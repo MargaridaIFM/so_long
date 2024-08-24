@@ -64,22 +64,69 @@ steps:
 []PARSING
 
 
-[x]PARSING
-	[] finish in .ber
-	[] The map can be composed of only these 5 characters:
-		[] 0 for an empty space,
-		[] 1 for a wall,
-		[] C for a collectible,
-		[] E for the exit,
-		[] P for the player’s starting position.
-	[] must contain
-		[] 1 exit,
-		[] 1 or more collectible
-		[] 1 starting position
-		[] be closed/surrounded by walls
-	[] rectangular;
-	[] message"Error\n" 
+[]PARSING 
+	[] Map checklist
+		[] Does the file exist
+		[] Is rectangular
+		[] finish in .ber
+			[]num of line != num of colum
+		[] the map have content
+		[] must contain
+			[] be closed/surrounded by walls
+			[] 1 exit
+			[] 1 or more collectible
+			[] 1 starting position 
+		[] The map can be composed of only these 5 characters:
+			[] 0 for an empty space,
+			[] 1 for a wall,
+			[] C for a collectible,
+			[] E for the exit,
+			[] P for the player’s starting position.
+		[] message"Error\n"
 
+	[]	Exit accessible and all the collectibles accessible from the start position 
+		[] flood fill
+		[] counter for the C and E;
+		[] compare the counter with the number of C and E(parsing)
+
+[] DISPLAY
+	[] Create a window using MiniLibX
+		[] Create the required structure to store all the necessary information
+	[]	load all the required sprites (images) for your game and store them into memory
+	[] Create the different hooks
+		[] KEY_HANDLER
+		[] mouse_handler (if necessary)
+		[] close_handler, this is a hook on the red cross that closes the program correctly
+		[] loop_hook (=> you game loop)
+
+// INITIATION FDF:
+// [] check the windows and map size, Etc;
+// [] open the window
+// [] display the map
+// [] hook the keys
+// [] hook the mouse
+// [] hook close window
+// 
+
+[]RENDER
+	[] Draw the background
+	[] Draw the walls, collectibles, and Exit
+	[] Draw the player
+
+[] KEY_HANDLER
+	[] Is the requested new position a Wall ?
+		[] don't do anything
+	[] Is the requested new position a Collectible ?
+		[] YES - Update the collected items counter and check
+		 '->[] check if all collectibles have been collected
+			 '->[] Yes - unblock the exit
+		[] UPupdate your map 2D array and replace the collectible by a "floor"
+	[] If the requested new position is not a wall, nor a collectible, nor outside the map, 
+		[]update the  player position to new.
+	([] Is the requested new position inside the map ?
+		 [] if the new position is outside the map, don't do anything. Never too sure)
+
+[] have to collect all collectibles to unlock the exit
 
 []BONUS
 	[] Make the player lose when they touch an enemy patrol.
