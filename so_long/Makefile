@@ -38,6 +38,8 @@ LINKS			=	-lm -lXext -lX11 -L$(MLX_PATH) -lmlx -L$(LFT_PATH) -lft
 
 SRC				=	$(addprefix $(SRC_DIR), so_long.c) \
 					$(addprefix $(SRC_DIR)$(PARSER_DIR), check_map.c) \
+					$(addprefix $(SRC_DIR)$(PARSER_DIR), check_criteria.c) \
+					$(addprefix $(SRC_DIR)$(PARSER_DIR), aux_check_map.c) \
 					$(addprefix $(SRC_DIR)$(ERROR_DIR), errors.c) \
 					$(addprefix $(SRC_DIR)$(DISPLAY_DIR), display.c)
 

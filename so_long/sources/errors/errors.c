@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 16:22:46 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/25 00:43:46 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/25 09:57:02 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,30 +46,30 @@ void free_exit(t_data *data, char *str)
     }
     exit(0);
 }
-// void	free_array(t_data *data)
-// {
-//     int idx;
+void	free_array(t_data *data)
+{
+    int idx;
     
-//     idx = 0;
-// 	while (idx < data->rows_nb)
-// 	{
-// 		free(data->map[idx]);
-// 		idx++;
-// 	}
-// 	free(data->map);
-// }
-// void	free_array_char(char **array)
-// {
-// 	int	idx;
+    idx = 0;
+	while (idx < data->rows)
+	{
+		free(data->map[idx]);
+		idx++;
+	}
+	free(data->map);
+}
+void	free_array_char(char **array)
+{
+	int	idx;
 
-// 	idx = 0;
-// 	while (array[idx])
-// 	{
-// 		free(array[idx]);
-// 		idx++;
-// 	}
-// 	free(array);
-// }
+	idx = 0;
+	while (array[idx])
+	{
+		free(array[idx]);
+		idx++;
+	}
+	free(array);
+}
 // // void	free_split(char *array)
 // // {
 // // 	int	idx;
@@ -87,7 +87,6 @@ void null_initialization_data(t_data *data)
     data->win_ptr = NULL;
     data->map = NULL;
     data->img = NULL;
-    data->rows_nb = 0;
-    data->cols_nb = 0;
-    data->ofset = 0;
+    data->rows = 0;
+    data->cols = 0;
 }

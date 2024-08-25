@@ -41,7 +41,7 @@ int	main(int argc, char *argv[])
 	check_map(&data, argv[1]);
 	//init_game ?
 	// mlx_loop(data.mlx_ptr);
-	// free_exit(&data, "");
+	free_exit(&data, "");
 }
 
 /*
