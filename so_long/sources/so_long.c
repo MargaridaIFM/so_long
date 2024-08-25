@@ -33,19 +33,18 @@ Because the line_length is different from the size of the window, it is faster.
 
 int	main(int argc, char *argv[])
 {
-	
+	t_data data;
+	(void)argv;
+	if(argc != 2)
+		free_exit(&data, "Error\n");
+	null_initialization_data(&data);
+	check_map(&data, argv[1]);
+	//init_game ?
+	// mlx_loop(data.mlx_ptr);
+	// free_exit(&data, "");
 }
 
 /*
-t_fdf	fdf;
-
-	if(argc != 2)
-		ft_printf("Not enough arguments\n");
-	null_initialization_fdf(&fdf);
-	check_map(&fdf, argv[1]);
-	init_fdf(&fdf);
-	//mlx_loop(fdf.mlx_ptr);
-    free_exit(&fdf, "");
 steps:
 [x] Understand de MinilibX
 	[x] mlx_init()
@@ -62,33 +61,6 @@ steps:
 	[x] mlx_loop()
 	[] mlx_xpm_file_to_image() --> bonus part
 []PARSING
-
-
-[]PARSING 
-	[] Map checklist
-		[] Does the file exist
-		[] Is rectangular
-		[] finish in .ber
-			[]num of line != num of colum
-		[] the map have content
-		[] must contain
-			[] be closed/surrounded by walls
-			[] 1 exit
-			[] 1 or more collectible
-			[] 1 starting position 
-		[] The map can be composed of only these 5 characters:
-			[] 0 for an empty space,
-			[] 1 for a wall,
-			[] C for a collectible,
-			[] E for the exit,
-			[] P for the player’s starting position.
-		[] message"Error\n"
-
-	[]	Exit accessible and all the collectibles accessible from the start position 
-		[] flood fill
-		[] counter for the C and E;
-		[] compare the counter with the number of C and E(parsing)
-
 [] DISPLAY
 	[] Create a window using MiniLibX
 		[] Create the required structure to store all the necessary information

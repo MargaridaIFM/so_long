@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 16:22:46 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/24 11:10:38 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/25 00:43:46 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,68 +26,68 @@
 //     }
 // }
 
-void free_exit(t_fdf *fdf, char *str)
+void free_exit(t_data *data, char *str)
 {
     if(str && str[0] != '\0')
         ft_putstr_fd(str, 2);
-    if(fdf->win_ptr)
+    if(data->map)
+       free_array(data);
+    if(data->img)
+      mlx_destroy_image(data->mlx_ptr, data->img);
+    if(data->win_ptr)
     {
-        mlx_destroy_window(fdf->mlx_ptr,fdf->win_ptr);
-       // free(fdf->win_ptr);
+        mlx_destroy_window(data->mlx_ptr,data->win_ptr);
+       //free(data->win_ptr);
     }
-    // ?
-    //if(fdf->img)
-    //   mlx_destroy_image(fdf->mlx_ptr, fdf->img);
-    if(fdf->mlx_ptr)
+    if(data->mlx_ptr)
     {
-        mlx_destroy_display(fdf->mlx_ptr);
-        free(fdf->mlx_ptr);
+        mlx_destroy_display(data->mlx_ptr);
+        free(data->mlx_ptr);
     }
-    if(fdf->map)
-        free_array(fdf);
     exit(0);
 }
-void	free_array(t_fdf *fdf)
-{
-    int idx;
+// void	free_array(t_data *data)
+// {
+//     int idx;
     
-    idx = 0;
-	while (idx < fdf->rows_nb)
-	{
-		free(fdf->map[idx]);
-		idx++;
-	}
-	free(fdf->map);
-}
-void	free_array_char(char **array)
-{
-	int	idx;
-
-	idx = 0;
-	while (array[idx])
-	{
-		free(array[idx]);
-		idx++;
-	}
-	free(array);
-}
-// void	free_split(char *array)
+//     idx = 0;
+// 	while (idx < data->rows_nb)
+// 	{
+// 		free(data->map[idx]);
+// 		idx++;
+// 	}
+// 	free(data->map);
+// }
+// void	free_array_char(char **array)
 // {
 // 	int	idx;
 
 // 	idx = 0;
 // 	while (array[idx])
 // 	{
-// 		free(array);
+// 		free(array[idx]);
 // 		idx++;
 // 	}
+// 	free(array);
 // }
-void null_initialization_fdf(t_fdf *fdf)
+// // void	free_split(char *array)
+// // {
+// // 	int	idx;
+
+// // 	idx = 0;
+// // 	while (array[idx])
+// // 	{
+// // 		free(array);
+// // 		idx++;
+// // 	}
+// // }
+void null_initialization_data(t_data *data)
 {
-    fdf->mlx_ptr = NULL;
-    fdf->win_ptr = NULL;
-    fdf->map = NULL;
-    fdf->img = NULL;
-    fdf->rows_nb = 0;
-    fdf->cols_nb = 0;
+    data->mlx_ptr = NULL;
+    data->win_ptr = NULL;
+    data->map = NULL;
+    data->img = NULL;
+    data->rows_nb = 0;
+    data->cols_nb = 0;
+    data->ofset = 0;
 }

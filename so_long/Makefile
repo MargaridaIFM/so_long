@@ -1,6 +1,6 @@
 .SILENT:
 
-NAME			=	FdF
+NAME			=	so_long
 
 CC				=	cc
 
@@ -36,7 +36,7 @@ MLX_PATH		=	$(addprefix $(LIBS_DIR), minilibx-linux/)
 
 LINKS			=	-lm -lXext -lX11 -L$(MLX_PATH) -lmlx -L$(LFT_PATH) -lft
 
-SRC				=	$(addprefix $(SRC_DIR), main.c) \
+SRC				=	$(addprefix $(SRC_DIR), so_long.c) \
 					$(addprefix $(SRC_DIR)$(PARSER_DIR), check_map.c) \
 					$(addprefix $(SRC_DIR)$(ERROR_DIR), errors.c) \
 					$(addprefix $(SRC_DIR)$(DISPLAY_DIR), display.c)
