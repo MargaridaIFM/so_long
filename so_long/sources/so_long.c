@@ -70,16 +70,6 @@ steps:
 		[] mouse_handler (if necessary)
 		[] close_handler, this is a hook on the red cross that closes the program correctly
 		[] loop_hook (=> you game loop)
-
-// INITIATION FDF:
-// [] check the windows and map size, Etc;
-// [] open the window
-// [] display the map
-// [] hook the keys
-// [] hook the mouse
-// [] hook close window
-// 
-
 []RENDER
 	[] Draw the background
 	[] Draw the walls, collectibles, and Exit
@@ -99,6 +89,15 @@ steps:
 		 [] if the new position is outside the map, don't do anything. Never too sure)
 
 [] have to collect all collectibles to unlock the exit
+
+// INITIATION FDF:
+// [] check the windows and map size, Etc;
+// [] open the window
+// [] display the map
+// [] hook the keys
+// [] hook the mouse
+// [] hook close window
+// 
 
 []BONUS
 	[] Make the player lose when they touch an enemy patrol.

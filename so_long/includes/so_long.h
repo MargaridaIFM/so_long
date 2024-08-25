@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 16:17:58 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/25 15:18:35 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/25 17:58:29 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,39 +29,48 @@ typedef struct s_img
 	int		endian;
 }			t_img;
 
+typedef struct s_map
+{
+	char	**map;
+	int		cols;
+	int		rows;
+	int		collect;
+}				t_map;
+
 typedef struct s_data
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	char		**map;
 	t_img	*img;
-	int		cols;
-	int		rows;
-	int 	colect;
+	t_map	map;
+	int		height;
+	int 	width;
+	
 }			t_data;
 
+
 // Parsing:
-void check_map(t_data *data, char *file_name);
-int check_file_name(char *file_name);
-void check_map_shape(t_data *data, int fd);
-void	loading_map(t_data *data, int fd);
-void  check_map_criteria(t_data *data);
+void		check_map(t_data *data, char *file_name);
+int			check_file_name(char *file_name);
+void		check_map_shape(t_data *data, int fd);
+void		loading_map(t_data *data, int fd);
+void		check_map_criteria(t_data *data);
 
 // check criteria
-void valid_chars(t_data *data);
-void check_num_elem(t_data *data, char c);
-void check_num_c(t_data *data, char c);
-void check_walls(t_data *data);
+void		valid_chars(t_data *data);
+void		check_num_elem(t_data *data, char c);
+void		check_num_c(t_data *data, char c);
+void	check_walls(t_data *data);
 
-//auxiliar functions
-int	ft_strlen_no_newline(char *s);
-void	print_map(char **map);
+// auxiliar functions
+int			ft_strlen_no_newline(char *s);
+void		print_map(char **map);
 
 // errors:
-void free_exit(t_data *data, char *str);
-void	free_array(t_data *data);
-void	free_array_char(char **array);
-void null_initialization_data(t_data *data);
+void		free_exit(t_data *data, char *str);
+void		free_array(t_data *data);
+void		free_array_char(char **array);
+void		null_initialization_data(t_data *data);
 
 // Display:
 

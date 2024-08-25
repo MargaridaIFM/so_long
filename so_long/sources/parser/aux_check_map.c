@@ -6,11 +6,11 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 11:25:03 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/25 11:52:46 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/25 16:10:41 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../../includes/so_long.h"
 
 void	print_map(char **map)
 {

@@ -6,11 +6,11 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 16:22:46 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/25 09:57:02 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/25 17:46:38 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../../includes/so_long.h"
  
 // passar para static ? and include one part to free the memory or create a function with both?
 
@@ -30,10 +30,10 @@ void free_exit(t_data *data, char *str)
 {
     if(str && str[0] != '\0')
         ft_putstr_fd(str, 2);
-    if(data->map)
+    if(data->map.map)
        free_array(data);
-    if(data->img)
-      mlx_destroy_image(data->mlx_ptr, data->img);
+    // if(data->img)
+    //   mlx_destroy_image(data->mlx_ptr, data->img);
     if(data->win_ptr)
     {
         mlx_destroy_window(data->mlx_ptr,data->win_ptr);
@@ -51,12 +51,12 @@ void	free_array(t_data *data)
     int idx;
     
     idx = 0;
-	while (idx < data->rows)
+	while (idx < data->map.rows)
 	{
-		free(data->map[idx]);
+		free(data->map.map[idx]);
 		idx++;
 	}
-	free(data->map);
+   free(data->map.map);
 }
 void	free_array_char(char **array)
 {
@@ -85,8 +85,8 @@ void null_initialization_data(t_data *data)
 {
     data->mlx_ptr = NULL;
     data->win_ptr = NULL;
-    data->map = NULL;
-    data->img = NULL;
-    data->rows = 0;
-    data->cols = 0;
+    data->height = 0;
+    data->width = 0;
+    data->map.rows = 0;
+    data->map.cols = 0;
 }

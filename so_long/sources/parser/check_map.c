@@ -6,11 +6,11 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:27:40 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/25 15:44:20 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/25 17:49:45 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../../includes/so_long.h"
 
 void	check_map(t_data *data, char *file_name)
 {
@@ -29,7 +29,7 @@ void	check_map(t_data *data, char *file_name)
     if (fd == -1)
 		free_exit(data, "Error - Could not reopen file.\n");
     loading_map(data, fd);
-	print_map(data->map);
+	print_map(data->map.map);
     close(fd);
 	check_map_criteria(data);
 }
@@ -37,8 +37,8 @@ void  check_map_criteria(t_data *data)
 { 
     valid_chars(data);
     check_walls(data);
-    printf("Collectables: %d\n", data->colect);
-    empty_path(data);
+    printf("Collectables: %d\n", data->map.collect);
+    //empty_path(data);
 }
 int	check_file_name(char *file_name)
 {
@@ -62,14 +62,17 @@ void	check_map_shape(t_data *data, int fd)
 	line = get_next_line(fd);
 	if (!line)
 		free_exit(data, "Error - File is empty.\n");
-	data->cols = ft_strlen_no_newline(line);
-	//ft_printf("First line length: %d\n", data->cols);
+   // printf("aqui\n");
+   // printf("line 0: %s\n", line);
+    data->map.cols = ft_strlen_no_newline(line);
+    //printf("line: %s\n", line);
+	//printf("First line length: %d\n", data->map.cols);
 	while (line)
 	{
-		data->rows++;
+		data->map.rows++;
 		check_cols = ft_strlen_no_newline(line);
-		//ft_printf("Line %d length: %d\n", data->rows, check_cols);
-		if (data->cols != check_cols)
+		//ft_printf("Line %d length: %d\n", data->map.rows, check_cols);
+		if (data->map.cols != check_cols)
 		{
 			free(line);
 			free_exit(data, "Error - Isn't a parallelogram.\n");
@@ -77,7 +80,7 @@ void	check_map_shape(t_data *data, int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
-	if (data->cols == data->rows)
+	if (data->map.cols == data->map.rows)
 		free_exit(data, "Error - Isn't a rectangule\n");
 }
 
@@ -88,29 +91,29 @@ void	loading_map(t_data *data, int fd)
     char *line;
 
     i = 0;
-	data->map = malloc((data->rows + 1) * sizeof(char *));
-	if (!data->map)
+	data->map.map = malloc((data->map.rows + 1) * sizeof(char *));
+	if (!data->map.map)
 		free_exit(data, "Error - Malloc error.\n");
-	while (i < data->rows)
+	while (i < data->map.rows)
 	{
         line = get_next_line(fd);
         if (!line)
 			free_exit(data, "Error - Reading line failed.\n");
-		data->map[i] = malloc((data->cols + 1) * sizeof(char));
-		if (!data->map[i])
+		data->map.map[i] = malloc((data->map.cols + 1) * sizeof(char));
+		if (!data->map.map[i])
 			free_exit(data, "Error - Malloc error.\n");
         j = 0;
-		while (j < data->cols)
+		while (j < data->map.cols)
 		{
-			data->map[i][j] = line[j];
+			data->map.map[i][j] = line[j];
 			//printf("Map[%d][%d] %c\n", i, j, data->map[i][j]);
 			j++;
 		}
-        data->map[i][j] = '\0';
+        data->map.map[i][j] = '\0';
         free(line);
 		i++;
 	}
-    data->map[i] = NULL;
+    data->map.map[i] = NULL;
 }
 
 /*
