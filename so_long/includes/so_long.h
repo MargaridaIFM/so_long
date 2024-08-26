@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 16:17:58 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/26 18:33:07 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/26 23:50:10 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_map
 	char		**map;
 	int			cols;
 	int			rows;
-	int			collect;
+	int			nb_collect;
 }				t_map;
 
 typedef struct s_player
@@ -43,15 +43,30 @@ typedef struct s_player
 	int			y;
 }				t_player;
 
+typedef struct s_sprites
+{
+	void 		*floor;
+	void 		*wall;
+	void 		*collec1;
+	void 		*collec2;
+	void 		*collec3;
+	void 		*collec4;
+	void 		*collec5;
+
+	void		*exit;
+	void		*player;
+}				t_sprites;
+
 typedef struct s_data
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_img *img; // tirar pointer;
 	t_map		map;
-	int			height;
-	int			width;
+	int			height_img; // passar p macro ?
+	int			width_img; // macro ?
 	t_player	player;
+	t_sprites	sprites;
 }				t_data;
 
 // Parsing:
@@ -81,6 +96,11 @@ void			free_array_char(char **array);
 void			null_initialization_data(t_data *data);
 
 // Display:
+void init_game(t_data *data);
+void load_sprites(t_data *data);
+void draw_images(t_data *data);
+void draw_backfloor(t_data *data);
+
 
 // Functions for Hooks and Masks
 

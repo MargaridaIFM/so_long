@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 11:16:49 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/26 18:37:57 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/27 00:14:44 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,12 @@ void	valid_chars(t_data *data)
 		y++;
 	}
 	check_num_elem(data, 'P');
-	printf("Player y:%d x:%d\n", data->player.y, data->player.x);
+	//printf("Player y:%d x:%d\n", data->player.y, data->player.x);
 	check_num_elem(data, 'E');
 	check_num_c(data, 'C');
-    printf("Collectables: %d\n", data->map.collect);
+  //  printf("Collectables: %d\n", data->map.nb_collect);
 
 }
-
 void	check_num_elem(t_data *data, char c)
 {
 	int	y;
@@ -88,7 +87,7 @@ void	check_num_c(t_data *data, char c)
 	}
 	if (counter < 1)
 		free_exit(data, "Error - Invalid number of elements\n");
-	data->map.collect = counter;
+	data->map.nb_collect = counter;
 }
 void	check_walls(t_data *data)
 {
@@ -122,37 +121,8 @@ void empty_path(t_data *data)
 	//print_map(temp_map);
 	//printf("entrou aqui dentro: %c\n", temp_map[data->player.y][data->player.x]);
 	flood_fill_map(temp_map, data->player.y, data->player.x);
-	printf("\n");
+	//printf("\n");
 	//print_map(temp_map);
 	check_flood_fill(temp_map, data);
 	
-}
-void flood_fill_map(char **temp_map, int y, int x)
-{
-	if(temp_map[y][x] != '1' && temp_map[y][x] != '2')
-	{
-		temp_map[y][x] = '2';
-		flood_fill_map(temp_map, y - 1, x);
-		flood_fill_map(temp_map, y + 1, x);
-		flood_fill_map(temp_map, y, x - 1);
-		flood_fill_map(temp_map, y, x + 1);
-	}
-}
-void check_flood_fill(char **temp_map, t_data *data)
-{
-	int y;
-	int x;
-
-	y = 0;
-	while(temp_map[y])
-	{
-		x = 0;
-		while (temp_map[y][x])
-		{
-			if(temp_map[y][x] != '1' && temp_map[y][x] != '2')
-				free_exit(data, "Error - Exit and/or collectibles not accessible by the player\n");
-			x++;
-		}
-		y++;
-	}
 }

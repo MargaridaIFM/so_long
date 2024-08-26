@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:27:40 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/26 18:38:08 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/27 00:10:47 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	check_map(t_data *data, char *file_name)
     if (fd == -1)
 		free_exit(data, "Error - Could not reopen file.\n");
 	loading_map(data, fd);
-	print_map(data->map.map);
+	//print_map(data->map.map);
     close(fd);
 	check_map_criteria(data);
 }

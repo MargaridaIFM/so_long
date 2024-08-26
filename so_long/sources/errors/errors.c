@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 16:22:46 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/26 15:58:34 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/26 23:50:40 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ void null_initialization_data(t_data *data)
 {
     data->mlx_ptr = NULL;
     data->win_ptr = NULL;
-    data->height = 0;
-    data->width = 0;
+    data->height_img = 64;
+    data->width_img = 64;
     data->map.map = NULL;
     data->map.rows = 0;
     data->map.cols = 0;
