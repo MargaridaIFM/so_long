@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 16:22:46 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/25 17:46:38 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/26 15:58:34 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	free_array(t_data *data)
     int idx;
     
     idx = 0;
-	while (idx < data->map.rows)
+	while (data->map.map[idx])
 	{
 		free(data->map.map[idx]);
 		idx++;
@@ -87,6 +87,9 @@ void null_initialization_data(t_data *data)
     data->win_ptr = NULL;
     data->height = 0;
     data->width = 0;
+    data->map.map = NULL;
     data->map.rows = 0;
     data->map.cols = 0;
+    data->player.x = 0;
+    data->player.y = 0;
 }

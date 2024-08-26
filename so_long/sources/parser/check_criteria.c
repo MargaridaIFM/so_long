@@ -6,23 +6,11 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 11:16:49 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/25 17:59:27 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/26 18:37:57 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
-
-// void  check_map_criteria(t_data data)
-// {
-// valid_chars
-//
-//     check_walls()
-//         free_exit(data, "Maps is not sorrounded by walls\n");
-//
-//    empty_path
-//         free_exit(data, "Error
-//	- Inavlid path to the Exit or collectibles\n");
-// }
 
 void	valid_chars(t_data *data)
 {
@@ -44,8 +32,11 @@ void	valid_chars(t_data *data)
 		y++;
 	}
 	check_num_elem(data, 'P');
+	printf("Player y:%d x:%d\n", data->player.y, data->player.x);
 	check_num_elem(data, 'E');
 	check_num_c(data, 'C');
+    printf("Collectables: %d\n", data->map.collect);
+
 }
 
 void	check_num_elem(t_data *data, char c)
@@ -54,18 +45,24 @@ void	check_num_elem(t_data *data, char c)
 	int	x;
 	int	counter;
 
-	y = 0;
+	y = -1;
 	counter = 0;
-	while (y < data->map.rows)
+	while (++y < data->map.rows)
 	{
 		x = 0;
 		while (x < data->map.cols)
 		{
 			if (data->map.map[y][x] == c)
+			{
 				counter++;
+				if (data->map.map[y][x] == 'P')
+				{
+					data->player.x = x;
+					data->player.y = y;
+				}
+			}
 			x++;
 		}
-		y++;
 	}
 	if (counter != 1)
 		free_exit(data, "Error - Invalid number of elements\n");
@@ -93,34 +90,6 @@ void	check_num_c(t_data *data, char c)
 		free_exit(data, "Error - Invalid number of elements\n");
 	data->map.collect = counter;
 }
-// void	check_walls(t_data *data)
-// {
-// 	int	i;
-
-// 	i = -1;
-// 	while (++i < data->map.cols)
-// 	{
-// 		if (data->map.map[0][i] != '1')
-// 			free_exit(data, "Error 1 - Map isn't sorrounded by walls\n");
-// 	}
-// 	i = -1;
-// 	while (++i < data->map.cols)
-// 	{
-// 		if (data->map.map[data->map.rows - 1][i] != '1')
-// 			free_exit(data, "Error 2- Map isn't sorrounded by walls\n");
-// 	}
-// 	i = -1;
-// 	while (++i < data->map.rows)
-// 	{
-// 		if (data->map.map[i][0] != '1')
-// 			free_exit(data, "Error 3 - Map isn't sorrounded by walls\n");
-// 	}
-// 	i = -1;
-// 	while (++i < data->map.rows)
-// 		if (data->map.map[i][data->map.cols - 1] != '1')
-// 			free_exit(data, "Error 4 - Map isn't sorrounded by walls\n");
-// }
-
 void	check_walls(t_data *data)
 {
 	int	y;
@@ -128,21 +97,62 @@ void	check_walls(t_data *data)
 	int	col;
 	int	row;
 
-	
 	col = data->map.cols - 1;
 	row = data->map.rows - 1;
-    x = 0;
+	x = 0;
 	while (x < data->map.cols)
 	{
 		if (data->map.map[0][x] != '1' || data->map.map[row][x] != '1')
 			free_exit(data, "Error - Map isn't surrounded by walls (top/bottom)\n");
 		x++;
 	}
-    y = 0;
+	y = 0;
 	while (y < data->map.rows)
 	{
 		if (data->map.map[y][0] != '1' || data->map.map[y][col] != '1')
 			free_exit(data, "Error - Map isn't surrounded by walls (left/right)\n");
+		y++;
+	}
+}
+void empty_path(t_data *data)
+{
+	char **temp_map;
+
+	temp_map = data->map.map; 
+	//print_map(temp_map);
+	//printf("entrou aqui dentro: %c\n", temp_map[data->player.y][data->player.x]);
+	flood_fill_map(temp_map, data->player.y, data->player.x);
+	printf("\n");
+	//print_map(temp_map);
+	check_flood_fill(temp_map, data);
+	
+}
+void flood_fill_map(char **temp_map, int y, int x)
+{
+	if(temp_map[y][x] != '1' && temp_map[y][x] != '2')
+	{
+		temp_map[y][x] = '2';
+		flood_fill_map(temp_map, y - 1, x);
+		flood_fill_map(temp_map, y + 1, x);
+		flood_fill_map(temp_map, y, x - 1);
+		flood_fill_map(temp_map, y, x + 1);
+	}
+}
+void check_flood_fill(char **temp_map, t_data *data)
+{
+	int y;
+	int x;
+
+	y = 0;
+	while(temp_map[y])
+	{
+		x = 0;
+		while (temp_map[y][x])
+		{
+			if(temp_map[y][x] != '1' && temp_map[y][x] != '2')
+				free_exit(data, "Error - Exit and/or collectibles not accessible by the player\n");
+			x++;
+		}
 		y++;
 	}
 }

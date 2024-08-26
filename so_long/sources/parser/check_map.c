@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:27:40 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/25 17:49:45 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/26 18:38:08 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	check_map(t_data *data, char *file_name)
     fd = open(file_name, O_RDONLY);
     if (fd == -1)
 		free_exit(data, "Error - Could not reopen file.\n");
-    loading_map(data, fd);
+	loading_map(data, fd);
 	print_map(data->map.map);
     close(fd);
 	check_map_criteria(data);
@@ -37,8 +37,7 @@ void  check_map_criteria(t_data *data)
 { 
     valid_chars(data);
     check_walls(data);
-    printf("Collectables: %d\n", data->map.collect);
-    //empty_path(data);
+    empty_path(data);
 }
 int	check_file_name(char *file_name)
 {
@@ -138,9 +137,10 @@ void	loading_map(t_data *data, int fd)
         [x] be closed/surrounded by walls
 IMP --->[] message"Error\n"
 
-	[]	Exit accessible and all the collectibles accessible from the start position
-		[] flood fill
-		[] counter for the C and E;
-		[] compare the counter with the number of C and E(parsing)
+	[]	Exit and all the collectibles are accessible from the start position
+		[x] tenho o player
+		[x flood fill
+		[x] counter for the C and E;
+		[x] compare the counter with the number of C and E(parsing)
 */
 
