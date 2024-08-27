@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 16:17:58 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/27 17:58:15 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/27 23:25:48 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,14 @@ typedef struct s_sprites
 {
 	t_img		floor;
 	t_img 		wall;
-	void		*collec1;
+	t_img		collec1;
 	void		*collec2;
 	void		*collec3;
 	void		*collec4;
 	void		*collec5;
-	void		*exit;
-	void		*p;
+	t_img		exit1;
+	t_img		exit2;
+	t_img		p;
 }				t_sprites;
 
 typedef struct s_data

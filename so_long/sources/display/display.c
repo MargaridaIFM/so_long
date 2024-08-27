@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:54:34 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/27 16:18:26 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/27 23:39:47 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ void	init_game(t_data *data)
 		free_exit(data, "Error - Impossible initiate the window.\n");
 
 
-
-
 	load_sprites(data);
 	draw_images(data);
 	// printf("aqui3\n");
@@ -42,58 +40,68 @@ void	init_game(t_data *data)
 }
 void	load_sprites(t_data *data)
 {
-	// data->sprites.floor = mlx_xpm_file_to_image(data->mlx_ptr,
-	// 		"assets/floor.xpm", &data->map.rows, &data->map.cols);
-	// data->sprites.wall = mlx_xpm_file_to_image(data->mlx_ptr, "assets/wall.xpm",
-	// 		&data->map.rows, &data->map.cols);
 	data->sprites.wall.img = mlx_xpm_file_to_image(data->mlx_ptr,
 			"assets/wall.xpm", &data->sprites.wall.width, &data->sprites.wall.height);
 	data->sprites.floor.img = mlx_xpm_file_to_image(data->mlx_ptr, "assets/floor.xpm",
 			&data->sprites.floor.width, &data->sprites.floor.height);
-	// data->sprites.p = mlx_xpm_file_to_image();
-	// data->sprites.exit = mlx_xpm_file_to_image();
-	// data->sprites.collec1 = mlx_xpm_file_to_image();
+	data->sprites.p.img = mlx_xpm_file_to_image(data->mlx_ptr, "assets/doc_r.xpm",
+			&data->sprites.p.width, &data->sprites.p.height);
+	// data->sprites.p.img = mlx_xpm_file_to_image(data->mlx_ptr, "assets/doc_r.xpm",
+	// 		&data->sprites.p.width, &data->sprites.p.height);
+	// data->sprites.p.img = mlx_xpm_file_to_image(data->mlx_ptr, "assets/doc_r.xpm",
+	// 		&data->sprites.p.width, &data->sprites.p.height);
+	// data->sprites.p.img = mlx_xpm_file_to_image(data->mlx_ptr, "assets/doc_r.xpm",
+	// 		&data->sprites.p.width, &data->sprites.p.height);
+	
+	// OU POR CAMA ?
+	data->sprites.exit1.img = mlx_xpm_file_to_image(data->mlx_ptr, "assets/door_c.xpm",
+			&data->sprites.exit1.width, &data->sprites.exit1.height);
+	data->sprites.exit2.img = mlx_xpm_file_to_image(data->mlx_ptr, "assets/door_o.xpm",
+			&data->sprites.exit2.width, &data->sprites.exit2.height);
+	data->sprites.collec1.img = mlx_xpm_file_to_image(data->mlx_ptr, "assets/pill_1.xpm",
+			&data->sprites.collec1.width, &data->sprites.collec1.height);
 	// data->sprites.collec2 = mlx_xpm_file_to_image();
 	// data->sprites.collec3 = mlx_xpm_file_to_image();
 	// data->sprites.collec4 = mlx_xpm_file_to_image();
 	// data->sprites.collec5 = mlx_xpm_file_to_image();
-	if (data->sprites.floor.img == NULL || data->sprites.wall.img == NULL)
-		// || data->sprites.p == NULL || data->sprites.exit == NULL
-		// || data->sprites.collec1 == NULL || data->sprites.collec2 == NULL
-		// || data->sprites.collec3 == NULL || data->sprites.collec4 == NULL
-		// || data->sprites.collec5 == NULL)
+	if (data->sprites.floor.img == NULL || data->sprites.wall.img == NULL
+		|| data->sprites.p.img == NULL || data->sprites.exit1.img == NULL
+		|| data->sprites.exit2.img == NULL || data->sprites.collec1.img == NULL )
+		//|| data->sprites.collec2.img == NULL
+		// || data->sprites.collec3.img == NULL || data->sprites.collec4.img == NULL
+		// || data->sprites.collec5.img == NULL)
 		free_exit(data, "Error - Failed to load sprites.\n");
 }
 void	draw_images(t_data *data)
 {
-	draw_background(data);
+	//draw_background(data);
 	draw_elements(data);
-	// draw_player(data);
+	//draw_player(data);
 	// free_exit(data, "");
 }
-void	draw_background(t_data *data)
-{
-	int	y;
-	int	x;
+// void	draw_background(t_data *data)
+// {
+// 	int	y;
+// 	int	x;
 
-	printf("aqui\n");
-	print_map(data->map.map);
+// 	printf("aqui\n");
+// 	print_map(data->map.map);
 
-	if (data->map.map == NULL)
-		free_exit(data, "Error - Map data is not properly initialized.\n");
-	y = 0;
-	while (data->map.map[y])
-	{
-		x = 0;
-		while (data->map.map[y][x])
-		{
-			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-				data->sprites.floor.img, x * 64, y * 64);
-			x++;
-		}
-		y++;
-	}
-}
+// 	if (data->map.map == NULL)
+// 		free_exit(data, "Error - Map data is not properly initialized.\n");
+// 	y = 0;
+// 	while (data->map.map[y])
+// 	{
+// 		x = 0;
+// 		while (data->map.map[y][x])
+// 		{
+// 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+// 				data->sprites.floor.img, x * 64, y * 64);
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// }
 void	draw_elements(t_data *data)
 {
 	int	y;
@@ -107,46 +115,39 @@ void	draw_elements(t_data *data)
 		x = 0;
 		while (data->map.map[y][x])
 		{
+			if (data->map.map[y][x] == '0')
+				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+					data->sprites.floor.img, x * 64, y * 64);
 			if (data->map.map[y][x] == '1')
 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 					data->sprites.wall.img, x * 64, y * 64);
-			// if(data->map.map[y][x] == 'E')
-			// 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			// 		data->sprites.wall, x * 64, y * 64);
-			// if(data->map.map[y][x] == 'C')
-			// 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			// 		data->sprites.wall, x * 64, y * 64);
+			if(data->map.map[y][x] == 'E')
+				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+					data->sprites.exit1.img, x * 64, y * 64);
+			if(data->map.map[y][x] == 'C')
+				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+					data->sprites.collec1.img, x * 64, y * 64);
 			x++;
 		}
 		y++;
 	}
 }
+// void	draw_player(t_data *data)
+//{
+// 	int	x;
+// 	int	y;
+// if (data->map.map == NULL)
+//		free_exit(data, "Error - Map data is not properly initialized.\n");
+// if (data->map.map[y][x] == 'P')
+// 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->sprites.p.img, x * 64, y * 64);
+//}
+
 int	handle_input(int keysym, t_data *data)
 {
 	if (keysym == XK_Escape)
 		free_exit(data, "");
 	return (0);
 }
-// void  init_data (t_data *data)
-// {
-//     // map_scale(data);
-//     data->mlx_ptr = mlx_init();
-//     if(data->mlx_ptr == NULL)
-//         free_exit(data, "Error");
-//     //data->win_ptr = mlx_new_window(data->mlx_ptr, WINDOW_WIDTH,
-//	WINDOW_HEIGHT, "data");
-//     if(data->win_ptr == NULL)
-//         free_exit(data, "Error");
-//     //data->img->img = mlx_new_image(data->mlx_ptr, WINDOW_WIDTH,
-//		WINDOW_HEIGHT);
-
-//     mlx_key_hook(data->win_ptr, handle_input, data);
-
-//     mlx_loop(data->mlx_ptr);
-//     //mlx_mouse_hook();
-
-// }
-
 /*
 [] DISPLAY
 	[x] Create a window using MiniLibX
@@ -161,25 +162,11 @@ int	handle_input(int keysym, t_data *data)
 
 []RENDER
 	[] load all the required sprites (images) for your game and store them into memory
-		[] Draw the background
-		[] Draw the walls, collectibles, and Exit
+		[x] Draw the background
+		[x] Draw the walls, collectibles, and Exit
 		[] Draw the player
 */
 
-// int handle_input(int keysym, t_data *data)
-// {
-//     if(keysym == XK_Escape)
-//         free_exit(data, "");
-//     return(0);
-// }
-// // void map_scale(t_data *data)
-// // {
-
-// // }
-// // void screen_size(t_data *data)
-// // {
-
-// // }
 
 // // INITIATION data:
 // // [] check the windows and map size, Etc;
