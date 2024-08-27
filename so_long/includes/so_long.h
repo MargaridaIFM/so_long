@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 16:17:58 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/27 01:28:32 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/27 10:10:03 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void			null_initialization_data(t_data *data);
 void init_game(t_data *data);
 void load_sprites(t_data *data);
 void draw_images(t_data *data);
-void draw_backfloor(t_data *data);
+void draw_background(t_data *data);
 
 
 // Functions for Hooks and Masks

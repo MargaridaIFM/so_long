@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:54:34 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/27 01:30:11 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/27 10:13:16 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,21 @@ void	load_sprites(t_data *data)
 	// data->sprites.collec3 = mlx_xpm_file_to_image();
 	// data->sprites.collec4 = mlx_xpm_file_to_image();
 	// data->sprites.collec5 = mlx_xpm_file_to_image();
-	if (data->sprites.floor == NULL || data->sprites.wall == NULL
-		|| data->sprites.p == NULL || data->sprites.exit == NULL
-		|| data->sprites.collec1 == NULL || data->sprites.collec2 == NULL
-		|| data->sprites.collec3 == NULL || data->sprites.collec4 == NULL
-		|| data->sprites.collec5 == NULL)
+	printf("floor pointer: %p\n", &data->sprites.floor);
+	if (data->sprites.floor == NULL || data->sprites.wall == NULL )
+		// || data->sprites.p == NULL || data->sprites.exit == NULL
+		// || data->sprites.collec1 == NULL || data->sprites.collec2 == NULL
+		// || data->sprites.collec3 == NULL || data->sprites.collec4 == NULL
+		// || data->sprites.collec5 == NULL)
 		free_exit(data, "Error - Failed to load sprites.\n");
 }
 void	draw_images(t_data *data)
 {
 	printf("aqui\n");
 	// print_map(data->map.map);
-	draw_backfloor(data);
+	draw_background(data);
 }
-void	draw_backfloor(t_data *data)
+void	draw_background(t_data *data)
 {
 	int	y;
 	int	x;
