@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 11:16:49 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/27 00:14:44 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/27 01:12:52 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,16 +113,20 @@ void	check_walls(t_data *data)
 		y++;
 	}
 }
+
 void empty_path(t_data *data)
 {
-	char **temp_map;
+    char **temp_map;
 
-	temp_map = data->map.map; 
+    temp_map = copy_map(data->map.map, data->map.rows, data->map.cols);
+	//print_map(data->map.map);
+	//printf("\n");
 	//print_map(temp_map);
 	//printf("entrou aqui dentro: %c\n", temp_map[data->player.y][data->player.x]);
 	flood_fill_map(temp_map, data->player.y, data->player.x);
 	//printf("\n");
-	//print_map(temp_map);
 	check_flood_fill(temp_map, data);
+	//print_map(temp_map);
+	free_array_char(temp_map);
 	
 }

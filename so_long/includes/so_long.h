@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 16:17:58 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/26 23:50:10 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/27 01:28:32 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct s_sprites
 	void 		*collec5;
 
 	void		*exit;
-	void		*player;
+	void		*p;
 }				t_sprites;
 
 typedef struct s_data
@@ -88,6 +88,8 @@ int				ft_strlen_no_newline(char *s);
 void			print_map(char **map);
 void			flood_fill_map(char **temp_map, int y, int x);
 void			check_flood_fill(char **temp_map, t_data *data);
+char **copy_map(char **map, int rows, int cols);
+
 
 // errors:
 void			free_exit(t_data *data, char *str);
@@ -103,6 +105,7 @@ void draw_backfloor(t_data *data);
 
 
 // Functions for Hooks and Masks
+int handle_input(int keysym, t_data *data); // provisoria;
 
 #endif
 

@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 16:22:46 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/26 23:50:40 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/27 01:29:47 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,14 @@ void null_initialization_data(t_data *data)
     data->map.cols = 0;
     data->player.x = 0;
     data->player.y = 0;
+    data->sprites.floor = NULL;
+    data->sprites.wall = NULL;
+    data->sprites.p = NULL;
+    data->sprites.exit = NULL;
+    data->sprites.collec1 = NULL;
+    data->sprites.collec2 = NULL;
+    data->sprites.collec3 = NULL;
+    data->sprites.collec4 = NULL;
+    data->sprites.collec5 = NULL;
+    
 }
