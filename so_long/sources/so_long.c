@@ -39,9 +39,11 @@ int	main(int argc, char *argv[])
 		free_exit(&data, "Error\n");
 	null_initialization_data(&data);
 	check_map(&data, argv[1]);
+	ft_printf("Moves %d\n", data.moves);
 	init_game(&data);
+	//mlx_string_put(data.mlx, data.win, 15, 15, 1000000, "Moves:0");
 	mlx_loop(data.mlx_ptr);
-	free_exit(&data, "");
+	// free_exit(&data, "");
 	
 }
 
@@ -63,6 +65,21 @@ steps:
 	[] mlx_xpm_file_to_image() --> bonus part
 []PARSING
 [] DISPLAY
+	[x] Create a window using MiniLibX
+		[x] Create the required structure to store all the necessary information
+	[] load all the required sprites (images) for your game and store them into memory
+	[] Create the different hooks
+		[] KEY_HANDLER
+		[] mouse_handler (if necessary)
+		[] close_handler,
+			this is a hook on the red cross that closes the program correctly
+		[] loop_hook (=> you game loop)
+
+[]RENDER
+	[] load all the required sprites (images) for your game and store them into memory
+		[] Draw the background
+		[] Draw the walls, collectibles, and Exit
+		[] Draw the player
 	[]RENDER
 		[] Draw the background
 		[] Draw the walls, collectibles, and Exit

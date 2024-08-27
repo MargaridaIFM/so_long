@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 16:17:58 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/27 10:10:03 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/27 17:58:15 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ typedef struct s_img
 {
 	void		*img;
 	char		*addr;
+	int			width;
+	int			height;
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
@@ -41,18 +43,19 @@ typedef struct s_player
 {
 	int			x;
 	int			y;
+	//t_img		sprite;
 }				t_player;
+
 
 typedef struct s_sprites
 {
-	void 		*floor;
-	void 		*wall;
-	void 		*collec1;
-	void 		*collec2;
-	void 		*collec3;
-	void 		*collec4;
-	void 		*collec5;
-
+	t_img		floor;
+	t_img 		wall;
+	void		*collec1;
+	void		*collec2;
+	void		*collec3;
+	void		*collec4;
+	void		*collec5;
 	void		*exit;
 	void		*p;
 }				t_sprites;
@@ -61,12 +64,16 @@ typedef struct s_data
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
-	t_img *img; // tirar pointer;
 	t_map		map;
-	int			height_img; // passar p macro ?
-	int			width_img; // macro ?
+	int height_img; // passar p macro ?
+	int width_img;  // macro ?
 	t_player	player;
 	t_sprites	sprites;
+	int			win_height;
+	int			win_width;
+	int			screen_w_max;
+	int			screen_h_max;
+	int			moves;
 }				t_data;
 
 // Parsing:
@@ -88,24 +95,24 @@ int				ft_strlen_no_newline(char *s);
 void			print_map(char **map);
 void			flood_fill_map(char **temp_map, int y, int x);
 void			check_flood_fill(char **temp_map, t_data *data);
-char **copy_map(char **map, int rows, int cols);
-
+char			**copy_map(char **map, int rows, int cols);
 
 // errors:
 void			free_exit(t_data *data, char *str);
 void			free_array(t_data *data);
 void			free_array_char(char **array);
+void			free_sprites(t_data *data);
 void			null_initialization_data(t_data *data);
 
 // Display:
-void init_game(t_data *data);
-void load_sprites(t_data *data);
-void draw_images(t_data *data);
-void draw_background(t_data *data);
-
+void			init_game(t_data *data);
+void			load_sprites(t_data *data);
+void			draw_images(t_data *data);
+void			draw_background(t_data *data);
+void			draw_elements(t_data *data);
 
 // Functions for Hooks and Masks
-int handle_input(int keysym, t_data *data); // provisoria;
+int				handle_input(int keysym, t_data *data); // provisoria;
 
 #endif
 

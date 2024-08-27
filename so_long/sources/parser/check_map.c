@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:27:40 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/27 00:10:47 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/27 16:04:56 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	check_map(t_data *data, char *file_name)
 	if (fd == -1)
 		free_exit(data, "Error - File is not in the repository.\n");
 	check_map_shape(data, fd);
-	//ft_printf("Number of coluns: %d\n", data->cols);
-	//ft_printf("Number of rows: %d\n", data->rows);
+	ft_printf("Number of coluns: %d\n", data->map.cols);
+	ft_printf("Number of rows: %d\n", data->map.rows);
     close(fd);
     fd = open(file_name, O_RDONLY);
     if (fd == -1)

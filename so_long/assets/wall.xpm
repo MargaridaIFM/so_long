@@ -1033,7 +1033,7 @@ static char * wall_xpm[] = {
 "~;	c #A07857",
 "{;	c #724D35",
 "];	c #8F5D3D",
-"^;	c #8E5D3C",
+"^;	c #8E5D3C",mlx_loop(data->mlx_ptr)
 "/;	c #8E5D3D",
 "(;	c #7D4E2F",
 "_;	c #A96937",
