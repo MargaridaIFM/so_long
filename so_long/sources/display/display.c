@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:54:34 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/27 23:39:47 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/28 19:18:29 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	init_game(t_data *data)
 	data->mlx_ptr = mlx_init();
 	if (data->mlx_ptr == NULL)
 		free_exit(data, "Error - mlx failed.");
-	// mlx_get_screen_size(data->mlx_ptr, &data->screen_h_max,
-	// 	&data->screen_w_max);
-	// if (data->screen_h_max < data->win_height
-	// 	|| data->screen_w_max < data->win_width + 64)
-	// 	free_exit(data, "Error - Window size larger than screen size.\n");
+	mlx_get_screen_size(data->mlx_ptr, &data->screen_h_max,
+		&data->screen_w_max);
+	if (data->screen_h_max < data->win_height
+		|| data->screen_w_max < data->win_width + 64)
+		free_exit(data, "Error - Window size larger than screen size.\n");
 	data->win_ptr = mlx_new_window(data->mlx_ptr, data->map.cols * 64,
 			data->map.rows * 64, "so_long");
 	if (data->win_ptr == NULL)
@@ -44,15 +44,14 @@ void	load_sprites(t_data *data)
 			"assets/wall.xpm", &data->sprites.wall.width, &data->sprites.wall.height);
 	data->sprites.floor.img = mlx_xpm_file_to_image(data->mlx_ptr, "assets/floor.xpm",
 			&data->sprites.floor.width, &data->sprites.floor.height);
-	data->sprites.p.img = mlx_xpm_file_to_image(data->mlx_ptr, "assets/doc_r.xpm",
-			&data->sprites.p.width, &data->sprites.p.height);
-	// data->sprites.p.img = mlx_xpm_file_to_image(data->mlx_ptr, "assets/doc_r.xpm",
-	// 		&data->sprites.p.width, &data->sprites.p.height);
-	// data->sprites.p.img = mlx_xpm_file_to_image(data->mlx_ptr, "assets/doc_r.xpm",
-	// 		&data->sprites.p.width, &data->sprites.p.height);
-	// data->sprites.p.img = mlx_xpm_file_to_image(data->mlx_ptr, "assets/doc_r.xpm",
-	// 		&data->sprites.p.width, &data->sprites.p.height);
-	
+	data->player.p_f.img = mlx_xpm_file_to_image(data->mlx_ptr, "assets/doc_f.xpm",
+			&data->player.p_f.width, &data->player.p_f.height);
+	data->player.p_b.img = mlx_xpm_file_to_image(data->mlx_ptr, "assets/doc_b.xpm",
+			&data->player.p_b.width, &data->player.p_b.height);
+	data->player.p_r.img = mlx_xpm_file_to_image(data->mlx_ptr, "assets/doc_r.xpm",
+			&data->player.p_r.width, &data->player.p_r.height);
+	data->player.p_l.img = mlx_xpm_file_to_image(data->mlx_ptr, "assets/doc_l.xpm",
+			&data->player.p_l.width, &data->player.p_l.height);
 	// OU POR CAMA ?
 	data->sprites.exit1.img = mlx_xpm_file_to_image(data->mlx_ptr, "assets/door_c.xpm",
 			&data->sprites.exit1.width, &data->sprites.exit1.height);
@@ -60,16 +59,11 @@ void	load_sprites(t_data *data)
 			&data->sprites.exit2.width, &data->sprites.exit2.height);
 	data->sprites.collec1.img = mlx_xpm_file_to_image(data->mlx_ptr, "assets/pill_1.xpm",
 			&data->sprites.collec1.width, &data->sprites.collec1.height);
-	// data->sprites.collec2 = mlx_xpm_file_to_image();
-	// data->sprites.collec3 = mlx_xpm_file_to_image();
-	// data->sprites.collec4 = mlx_xpm_file_to_image();
-	// data->sprites.collec5 = mlx_xpm_file_to_image();
 	if (data->sprites.floor.img == NULL || data->sprites.wall.img == NULL
-		|| data->sprites.p.img == NULL || data->sprites.exit1.img == NULL
-		|| data->sprites.exit2.img == NULL || data->sprites.collec1.img == NULL )
-		//|| data->sprites.collec2.img == NULL
-		// || data->sprites.collec3.img == NULL || data->sprites.collec4.img == NULL
-		// || data->sprites.collec5.img == NULL)
+		|| data->player.p_f.img == NULL || data->player.p_b.img == NULL 
+		|| data->player.p_r.img == NULL || data->player.p_l.img == NULL
+		 || data->sprites.exit1.img == NULL || data->sprites.exit2.img == NULL 
+		 || data->sprites.collec1.img == NULL )
 		free_exit(data, "Error - Failed to load sprites.\n");
 }
 void	draw_images(t_data *data)
@@ -79,6 +73,13 @@ void	draw_images(t_data *data)
 	//draw_player(data);
 	// free_exit(data, "");
 }
+
+// t_info	*get_play(void)
+// {
+// 	static t_info	inf;
+
+// 	return (&inf->);
+// }
 // void	draw_background(t_data *data)
 // {
 // 	int	y;

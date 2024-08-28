@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 16:22:46 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/27 15:58:05 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/28 19:07:57 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,13 @@ void	free_exit(t_data *data, char *str)
 	if (str && str[0] != '\0')
 		ft_putstr_fd(str, 2);
     free_sprites(data);
+	free_player(data);
 	if (data->map.map)
 		free_array(data);
-	// if(data->img)
-	//   mlx_destroy_image(data->mlx_ptr, data->img);
 	if (data->win_ptr)
 	{
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-		// free(data->win_ptr);
+		//free(data->win_ptr);
 	}
 	if (data->mlx_ptr)
 	{
@@ -74,7 +73,6 @@ void	free_array_char(char **array)
 }
 void	free_sprites(t_data *data)
 {
-
 	if (data->sprites.floor.img)
     {
         mlx_destroy_image(data->mlx_ptr, data->sprites.floor.img);
@@ -85,14 +83,52 @@ void	free_sprites(t_data *data)
         mlx_destroy_image(data->mlx_ptr, data->sprites.wall.img);
         data->sprites.wall.img = NULL;            
     }
+	if (data->sprites.collec1.img)
+    {
+        mlx_destroy_image(data->mlx_ptr, data->sprites.collec1.img);
+        data->sprites.collec1.img = NULL;            
+    }
+	if (data->sprites.exit1.img)
+    {
+        mlx_destroy_image(data->mlx_ptr, data->sprites.exit1.img);
+        data->sprites.exit1.img = NULL;            
+    }
+	if (data->sprites.exit2.img)
+    {
+        mlx_destroy_image(data->mlx_ptr, data->sprites.exit2.img);
+        data->sprites.exit2.img = NULL;            
+    }
+}
+void	free_player(t_data *data)
+{
+	if (data->player.p_f.img)
+    {
+        mlx_destroy_image(data->mlx_ptr, data->player.p_f.img);
+        data->player.p_f.img = NULL;            
+    }
+		if (data->player.p_b.img)
+    {
+        mlx_destroy_image(data->mlx_ptr, data->player.p_b.img);
+        data->player.p_b.img = NULL;            
+    }
+		if (data->player.p_r.img)
+    {
+        mlx_destroy_image(data->mlx_ptr, data->player.p_r.img);
+        data->player.p_r.img = NULL;            
+    }
+		if (data->player.p_l.img)
+    {
+        mlx_destroy_image(data->mlx_ptr, data->player.p_l.img);
+        data->player.p_l.img = NULL;            
+    }
 }
 void	null_initialization_data(t_data *data)
 {
     ft_bzero(data, sizeof(t_data));
 	// data->mlx_ptr = NULL;
 	// data->win_ptr = NULL;
-	data->height_img = 64;
-	data->width_img = 64;
+	//data->height_img = 64;
+	//data->width_img = 64;
 	// data->map.map = NULL;
 	// data->map.rows = 0;
 	// data->map.cols = 0;

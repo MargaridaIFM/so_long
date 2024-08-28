@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 16:17:58 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/27 23:25:48 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/28 19:06:39 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,27 +38,30 @@ typedef struct s_map
 	int			rows;
 	int			nb_collect;
 }				t_map;
+// incluir flags p a exit ?
 
 typedef struct s_player
 {
 	int			x;
 	int			y;
-	//t_img		sprite;
+	t_img		p_f;
+	t_img		p_b;
+	t_img		p_r;
+	t_img		p_l;
 }				t_player;
-
 
 typedef struct s_sprites
 {
 	t_img		floor;
-	t_img 		wall;
+	t_img		wall;
 	t_img		collec1;
-	void		*collec2;
-	void		*collec3;
-	void		*collec4;
-	void		*collec5;
+	// void		*collec2;
+	// void		*collec3;
+	// void		*collec4;
+	// void		*collec5;
 	t_img		exit1;
 	t_img		exit2;
-	t_img		p;
+
 }				t_sprites;
 
 typedef struct s_data
@@ -66,8 +69,8 @@ typedef struct s_data
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_map		map;
-	int height_img; // passar p macro ?
-	int width_img;  // macro ?
+	// int 		height_img; // passar p macro ? - esta so no errors
+	// int 		width_img;  // macro ?
 	t_player	player;
 	t_sprites	sprites;
 	int			win_height;
@@ -103,13 +106,14 @@ void			free_exit(t_data *data, char *str);
 void			free_array(t_data *data);
 void			free_array_char(char **array);
 void			free_sprites(t_data *data);
+void			free_player(t_data *data);
 void			null_initialization_data(t_data *data);
 
 // Display:
 void			init_game(t_data *data);
 void			load_sprites(t_data *data);
 void			draw_images(t_data *data);
-void			draw_background(t_data *data);
+// void			draw_background(t_data *data);
 void			draw_elements(t_data *data);
 
 // Functions for Hooks and Masks

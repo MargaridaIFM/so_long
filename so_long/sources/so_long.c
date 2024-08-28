@@ -41,7 +41,7 @@ int	main(int argc, char *argv[])
 	check_map(&data, argv[1]);
 	ft_printf("Moves %d\n", data.moves);
 	init_game(&data);
-	//mlx_string_put(data.mlx, data.win, 15, 15, 1000000, "Moves:0");
+	mlx_string_put(data.mlx_ptr, data.win_ptr, 15, 15, 16777215, "Moves:0");
 	mlx_loop(data.mlx_ptr);
 	// free_exit(&data, "");
 	
@@ -55,7 +55,7 @@ steps:
 	[] mlx_clear_window()
 	[x] mlx_destroy_window()
 	[x] mlx_new_image()
-	[] mlx_destroy_image()
+	[] mlx_destroy_image()int			moves;
 	[x] mlx_get_data_addr()
 	[] mlx_put_image_to_window()
 	[x] mlx_hook()
@@ -66,7 +66,7 @@ steps:
 []PARSING
 [] DISPLAY
 	[x] Create a window using MiniLibX
-		[x] Create the required structure to store all the necessary information
+		[x] Create the requint			moves;ired structure to store all the necessary information
 	[] load all the required sprites (images) for your game and store them into memory
 	[] Create the different hooks
 		[] KEY_HANDLER
@@ -111,8 +111,8 @@ steps:
 
 []BONUS
 	[] Make the player lose when they touch an enemy patrol.
-	[]Add some sprite animation.
-	[]Display the movement count directly on screen instead of writing it in the shell
+	[]	Add some sprite animation.
+	[?] Display the movement count directly on screen instead of writing it in the shell
 */
 
 /*
