@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 16:22:46 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/28 19:07:57 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/28 23:28:35 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,26 +122,25 @@ void	free_player(t_data *data)
         data->player.p_l.img = NULL;            
     }
 }
-void	null_initialization_data(t_data *data)
+void	initialization_data(t_data *data)
 {
     ft_bzero(data, sizeof(t_data));
-	// data->mlx_ptr = NULL;
-	// data->win_ptr = NULL;
-	//data->height_img = 64;
-	//data->width_img = 64;
-	// data->map.map = NULL;
-	// data->map.rows = 0;
-	// data->map.cols = 0;
-	// data->player.x = 0;
-	// data->player.y = 0;
-	// data->moves = 0;
-	// data->sprites.floor.img = NULL;
-	// data->sprites.wall.img = NULL;
-	// data->sprites.p = NULL;
-	// data->sprites.exit = NULL;
-	// data->sprites.collec1 = NULL;
-	// data->sprites.collec2 = NULL;
-	// data->sprites.collec3 = NULL;
-	// data->sprites.collec4 = NULL;
-	// data->sprites.collec5 = NULL;
+	data->sprites.floor.width = 64;
+	data->sprites.floor.height = 64;
+	data->sprites.wall.width = 64;
+	data->sprites.wall.height = 64;
+	data->sprites.collec1.width = 64;
+	data->sprites.collec1.height = 64;
+	data->sprites.exit1.width = 64;
+	data->sprites.exit1.height = 64;
+	data->sprites.exit2.width = 64;
+	data->sprites.exit2.height = 64;
+	data->player.p_f.width = 64;
+	data->player.p_f.height = 64;
+	data->player.p_b.width = 64;
+	data->player.p_b.height = 64;
+	data->player.p_r.width = 64;
+	data->player.p_r.height = 64;
+	data->player.p_l.width = 64;
+	data->player.p_l.height = 64;	
 }

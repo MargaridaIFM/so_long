@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 16:17:58 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/28 19:06:39 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/28 23:28:42 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_img
 {
 	void		*img;
 	char		*addr;
-	int			width;
+	int			width; // nao incializado!!!
 	int			height;
 	int			bits_per_pixel;
 	int			line_length;
@@ -37,6 +37,7 @@ typedef struct s_map
 	int			cols;
 	int			rows;
 	int			nb_collect;
+	int			flag_exit;
 }				t_map;
 // incluir flags p a exit ?
 
@@ -61,6 +62,7 @@ typedef struct s_sprites
 	// void		*collec5;
 	t_img		exit1;
 	t_img		exit2;
+	int			flag_exit;
 
 }				t_sprites;
 
@@ -73,8 +75,8 @@ typedef struct s_data
 	// int 		width_img;  // macro ?
 	t_player	player;
 	t_sprites	sprites;
-	int			win_height;
-	int			win_width;
+	// int			win_height;
+	// int			win_width;
 	int			screen_w_max;
 	int			screen_h_max;
 	int			moves;
@@ -107,14 +109,13 @@ void			free_array(t_data *data);
 void			free_array_char(char **array);
 void			free_sprites(t_data *data);
 void			free_player(t_data *data);
-void			null_initialization_data(t_data *data);
+void			initialization_data(t_data *data);
 
 // Display:
 void			init_game(t_data *data);
 void			load_sprites(t_data *data);
-void			draw_images(t_data *data);
-// void			draw_background(t_data *data);
-void			draw_elements(t_data *data);
+void			draw_map(t_data *data);
+void			draw_elements(t_data *data, int y, int x);
 
 // Functions for Hooks and Masks
 int				handle_input(int keysym, t_data *data); // provisoria;
