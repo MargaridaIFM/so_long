@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 16:22:46 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/28 23:28:35 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/29 15:02:10 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,7 @@ void	free_sprites(t_data *data)
         data->sprites.exit1.img = NULL;            
     }
 	if (data->sprites.exit2.img)
-    {
         mlx_destroy_image(data->mlx_ptr, data->sprites.exit2.img);
-        data->sprites.exit2.img = NULL;            
-    }
 }
 void	free_player(t_data *data)
 {

@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:27:40 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/27 16:04:56 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/29 12:51:25 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,12 +101,11 @@ void	loading_map(t_data *data, int fd)
 		data->map.map[i] = malloc((data->map.cols + 1) * sizeof(char));
 		if (!data->map.map[i])
 			free_exit(data, "Error - Malloc error.\n");
-        j = 0;
-		while (j < data->map.cols)
+        j = -1;
+		while (++j < data->map.cols)
 		{
+			//printf("Map[%d][%d] %c\n", i, j, data->map.map[i][j]);
 			data->map.map[i][j] = line[j];
-			//printf("Map[%d][%d] %c\n", i, j, data->map[i][j]);
-			j++;
 		}
         data->map.map[i][j] = '\0';
         free(line);

@@ -39,9 +39,8 @@ int	main(int argc, char *argv[])
 		free_exit(&data, "Error\n");
 	initialization_data(&data);
 	check_map(&data, argv[1]);
-	ft_printf("Moves %d\n", data.moves);
 	init_game(&data);
-	mlx_string_put(data.mlx_ptr, data.win_ptr, 15, 15, 16777215, "Moves:0");
+	//mlx_string_put(data.mlx_ptr, data.win_ptr, 15, 15, 16777215, ft_itoa(data.moves));
 	mlx_loop(data.mlx_ptr);	
 }
 

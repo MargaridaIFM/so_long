@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 11:25:03 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/27 01:09:39 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/29 19:55:30 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,34 +42,29 @@ int	ft_strlen_no_newline(char *s)
 		idx++;
 	return (idx);
 }
-void	flood_fill_map(char **temp_map, int y, int x)
+void	flood_fill_map(char **temp_map, int y, int x, t_data *data)
 {
-	if (temp_map[y][x] != '1' && temp_map[y][x] != '2')
+	if (temp_map[y][x] == '1' || temp_map[y][x] == '2')
+		return ;
+	else if (temp_map[y][x] == 'C')
+		data->map.coll_p--;
+	else if (temp_map[y][x] == 'E')
 	{
-		temp_map[y][x] = '2';
-		flood_fill_map(temp_map, y - 1, x);
-		flood_fill_map(temp_map, y + 1, x);
-		flood_fill_map(temp_map, y, x - 1);
-		flood_fill_map(temp_map, y, x + 1);
+		data->map.exit_p = 1;
+		return ;
 	}
+	temp_map[y][x] = '2';
+	flood_fill_map(temp_map, y - 1, x, data);
+	flood_fill_map(temp_map, y + 1, x, data);
+	flood_fill_map(temp_map, y, x - 1, data);
+	flood_fill_map(temp_map, y, x + 1, data);
 }
 void	check_flood_fill(char **temp_map, t_data *data)
 {
-	int	y;
-	int	x;
-
-	y = 0;
-	while (temp_map[y])
-	{
-		x = 0;
-		while (temp_map[y][x])
-		{
-			if (temp_map[y][x] != '1' && temp_map[y][x] != '2')
-				free_exit(data, "Error - Exit and/or collectibles not accessible by the player\n");
-			x++;
-		}
-		y++;
-	}
+	printf("%d   %d\n", data->map.coll_p, data->map.exit_p);
+	print_map(temp_map);
+	if (data->map.coll_p != 0 || data->map.exit_p != 1)
+		free_exit(data, "Error - Exit and/or collectibles not by the player\n");
 }
 char	**copy_map(char **map, int rows, int cols)
 {

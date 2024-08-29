@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 16:17:58 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/28 23:28:42 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/29 20:05:02 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_img
 {
 	void		*img;
 	char		*addr;
-	int			width; // nao incializado!!!
+	int 		width; // nao incializado!!!
 	int			height;
 	int			bits_per_pixel;
 	int			line_length;
@@ -37,7 +37,11 @@ typedef struct s_map
 	int			cols;
 	int			rows;
 	int			nb_collect;
+	int			coll_p;
+	int			exit_p;
 	int			flag_exit;
+	int 		exit_x;
+	int 		exit_y;
 }				t_map;
 // incluir flags p a exit ?
 
@@ -62,7 +66,6 @@ typedef struct s_sprites
 	// void		*collec5;
 	t_img		exit1;
 	t_img		exit2;
-	int			flag_exit;
 
 }				t_sprites;
 
@@ -91,15 +94,16 @@ void			check_map_criteria(t_data *data);
 
 // check criteria
 void			valid_chars(t_data *data);
-void			check_num_elem(t_data *data, char c);
+void			check_num_p(t_data *data, char c);
 void			check_num_c(t_data *data, char c);
+void			check_num_e(t_data *data, char c);
 void			check_walls(t_data *data);
 void			empty_path(t_data *data);
 
 // auxiliar functions
 int				ft_strlen_no_newline(char *s);
 void			print_map(char **map);
-void			flood_fill_map(char **temp_map, int y, int x);
+void			flood_fill_map(char **temp_map, int y, int x, t_data *data);
 void			check_flood_fill(char **temp_map, t_data *data);
 char			**copy_map(char **map, int rows, int cols);
 
@@ -114,12 +118,16 @@ void			initialization_data(t_data *data);
 // Display:
 void			init_game(t_data *data);
 void			load_sprites(t_data *data);
-void			draw_map(t_data *data);
-void			draw_elements(t_data *data, int y, int x);
+void			draw_images(t_data *data);
+void			draw_background(t_data *data);
+void			draw_elements(t_data *data);
+void			draw_player(int keysym, t_data *data);
+
 
 // Functions for Hooks and Masks
-int				handle_input(int keysym, t_data *data); // provisoria;
-
+void			call_hooks(t_data *data);
+int				handle_key(int keysym, t_data *data); // provisoria;
+int 			verify_move (t_data *data, int keysym);
 #endif
 
 //# define MALLOC_ERROR "Failure in memory alocation"

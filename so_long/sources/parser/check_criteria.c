@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 11:16:49 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/27 01:12:52 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/29 19:21:22 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ void	valid_chars(t_data *data)
 		}
 		y++;
 	}
-	check_num_elem(data, 'P');
+	check_num_p(data, 'P');
 	//printf("Player y:%d x:%d\n", data->player.y, data->player.x);
-	check_num_elem(data, 'E');
+	check_num_e(data, 'E');
 	check_num_c(data, 'C');
   //  printf("Collectables: %d\n", data->map.nb_collect);
 
 }
-void	check_num_elem(t_data *data, char c)
+void	check_num_p(t_data *data, char c)
 {
 	int	y;
 	int	x;
@@ -66,6 +66,35 @@ void	check_num_elem(t_data *data, char c)
 	if (counter != 1)
 		free_exit(data, "Error - Invalid number of elements\n");
 }
+void	check_num_e(t_data *data, char c)
+{
+	int	y;
+	int	x;
+	int	counter;
+
+	y = -1;
+	counter = 0;
+	while (++y < data->map.rows)
+	{
+		x = 0;
+		while (x < data->map.cols)
+		{
+			if (data->map.map[y][x] == c)
+			{
+				counter++;
+				if (data->map.map[y][x] == 'E')
+				{
+					data->map.exit_x = x;
+					data->map.exit_y = y;
+				}
+			}
+			x++;
+		}
+	}
+	if (counter != 1)
+		free_exit(data, "Error - Invalid number of elements\n");
+}
+
 void	check_num_c(t_data *data, char c)
 {
 	int	y;
@@ -123,7 +152,8 @@ void empty_path(t_data *data)
 	//printf("\n");
 	//print_map(temp_map);
 	//printf("entrou aqui dentro: %c\n", temp_map[data->player.y][data->player.x]);
-	flood_fill_map(temp_map, data->player.y, data->player.x);
+	data->map.coll_p = data->map.nb_collect;
+	flood_fill_map(temp_map, data->player.y, data->player.x, data);
 	//printf("\n");
 	check_flood_fill(temp_map, data);
 	//print_map(temp_map);
