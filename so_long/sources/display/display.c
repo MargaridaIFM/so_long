@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:54:34 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/29 20:13:32 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/29 23:30:24 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,18 +125,23 @@ void	draw_elements(t_data *data)
 }
 void	draw_player(int keysym, t_data *data)
 {
+	char *moves;
+	
+	moves = ft_itoa(data->moves);
 	if (keysym == XK_w || keysym == XK_Up)
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->player.p_b.img,
-		data->player.x * 64, data->player.y * 64);
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->player.p_b.img, data->player.x * 64, data->player.y * 64);
 	else if (keysym == XK_s || keysym == XK_Down)
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->player.p_f.img,
-		data->player.x * 64, data->player.y * 64);
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->player.p_f.img, data->player.x * 64, data->player.y * 64);
 	else if (keysym == XK_a || keysym == XK_Left)
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->player.p_l.img,
-		data->player.x * 64, data->player.y * 64);
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->player.p_l.img, data->player.x * 64, data->player.y * 64);
 	else if (keysym == XK_d || keysym == XK_Right)
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->player.p_r.img,
-		data->player.x * 64, data->player.y * 64);
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->player.p_r.img, data->player.x * 64, data->player.y * 64);
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 15, 15, 16777215, moves);
+	free(moves);
 }
 void	call_hooks(t_data *data)
 {
@@ -145,11 +150,12 @@ void	call_hooks(t_data *data)
 }
 int	handle_key(int keysym, t_data *data)
 {
-	if(verify_move(data, keysym) != 0)
-		return(0);
+	if (verify_move(data, keysym) != 0)
+		return (0);
 	ft_printf("Moves %d\n", data->moves++);
+	//mlx_string_put(data->mlx_ptr, data->win_ptr, 15, 15, 16777215, ft_itoa(data->moves));
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-				data->sprites.floor.img, data->player.x * 64, data->player.y * 64);
+		data->sprites.floor.img, data->player.x * 64, data->player.y * 64);
 	if (keysym == XK_Escape)
 		free_exit(data, "");
 	else if (keysym == XK_w || keysym == XK_Up)
@@ -160,21 +166,18 @@ int	handle_key(int keysym, t_data *data)
 		data->player.x--;
 	else if (keysym == XK_d || keysym == XK_Right)
 		data->player.x++;
-	
 	data->map.map[data->player.y][data->player.x] = 'P';
-	
-	//verify_exit(data);
-	//update_elements(data);
-	
+	// verify_exit(data);
+	// update_elements(data);
 	draw_player(keysym, data);
 	// draw_map(data);
 	return (0);
 }
 
-int verify_move (t_data *data, int keysym)
-{	
-	int y;
-	int x;
+int	verify_move(t_data *data, int keysym)
+{
+	int	y;
+	int	x;
 
 	y = data->player.y;
 	x = data->player.x;
@@ -186,20 +189,22 @@ int verify_move (t_data *data, int keysym)
 		x--;
 	else if (keysym == XK_d || keysym == XK_Right)
 		x++;
-	if(data->map.map[y][x] == '1' || (data->map.map[y][x] == 'E' && data->map.nb_collect != 0))
-		return 1;
-	else if(data->map.map[y][x] == 'C')
-		{
-			data->map.map[y][x] = '0';
-			data->map.nb_collect--;
-			if (data->map.nb_collect == 0)
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-					data->sprites.exit2.img, data->map.exit_x * 64, data->map.exit_y * 64);
-			return(0);
-		}
+	if (data->map.map[y][x] == '1' || (data->map.map[y][x] == 'E'
+			&& data->map.nb_collect != 0))
+		return (1);
+	else if (data->map.map[y][x] == 'C')
+	{
+		data->map.map[y][x] = '0';
+		data->map.nb_collect--;
+		if (data->map.nb_collect == 0)
+			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+				data->sprites.exit2.img, data->map.exit_x * 64, data->map.exit_y
+				* 64);
+		return (0);
+	}
 	else if (data->map.map[y][x] == 'E' && data->map.nb_collect == 0)
 		free_exit(data, "");
-	return(0);
+	return (0);
 }
 
 // void	draw_map(t_data *data)
@@ -284,7 +289,7 @@ IMPORTANTE:
 /*
  hook - keypress
  close window com x
-put moves;
+put		moves;
 
-bonus: 
+bonus:
 */

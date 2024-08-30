@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 16:17:58 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/29 20:05:02 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/29 23:20:26 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "X11/keysym.h"
 # include <math.h>
 # include <stdio.h>
+# include <stdlib.h>
 
 typedef struct s_img
 {

@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:27:40 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/29 12:51:25 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/30 13:52:40 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ void	check_map_shape(t_data *data, int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
-	if (data->map.cols == data->map.rows)
-		free_exit(data, "Error - Isn't a rectangule\n");
+	// if (data->map.cols == data->map.rows)
+	// 	free_exit(data, "Error - Isn't a rectangule\n");
 }
 
 void	loading_map(t_data *data, int fd)
