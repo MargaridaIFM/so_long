@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 16:17:58 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/29 23:20:26 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/30 18:31:19 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
+
+//#define malloc(x) NULL
 
 typedef struct s_img
 {
@@ -130,11 +132,3 @@ void			call_hooks(t_data *data);
 int				handle_key(int keysym, t_data *data); // provisoria;
 int 			verify_move (t_data *data, int keysym);
 #endif
-
-//# define MALLOC_ERROR "Failure in memory alocation"
-// typedef enum s_error_msg
-// {
-// 	NO_ERROR,
-// 	MLX_ERROR,
-// 	LEN_ERROR_MSG
-// }			t_error_msg;

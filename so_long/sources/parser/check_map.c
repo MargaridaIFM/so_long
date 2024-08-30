@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:27:40 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/30 13:52:40 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/30 15:49:51 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,13 @@ void	check_map(t_data *data, char *file_name)
 	if (fd == -1)
 		free_exit(data, "Error - File is not in the repository.\n");
 	check_map_shape(data, fd);
-	ft_printf("Number of coluns: %d\n", data->map.cols);
-	ft_printf("Number of rows: %d\n", data->map.rows);
+	// ft_printf("Number of coluns: %d\n", data->map.cols);
+	// ft_printf("Number of rows: %d\n", data->map.rows);
     close(fd);
     fd = open(file_name, O_RDONLY);
     if (fd == -1)
 		free_exit(data, "Error - Could not reopen file.\n");
 	loading_map(data, fd);
-	//print_map(data->map.map);
     close(fd);
 	check_map_criteria(data);
 }
@@ -74,7 +73,7 @@ void	check_map_shape(t_data *data, int fd)
 		if (data->map.cols != check_cols)
 		{
 			free(line);
-			free_exit(data, "Error - Isn't a parallelogram.\n");
+			free_exit(data, "Error - Isn't a rectangle.\n");
 		}
 		free(line);
 		line = get_next_line(fd);
@@ -136,7 +135,7 @@ void	loading_map(t_data *data, int fd)
         [x] be closed/surrounded by walls
 IMP --->[] message"Error\n"
 
-	[]	Exit and all the collectibles are accessible from the start position
+	[x]	Exit and all the collectibles are accessible from the start position
 		[x] tenho o player
 		[x flood fill
 		[x] counter for the C and E;

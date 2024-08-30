@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:54:34 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/29 23:30:24 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/30 18:36:49 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,6 @@ void	draw_background(t_data *data)
 	int	y;
 	int	x;
 
-	if (data->map.map == NULL)
-		free_exit(data, "Error - Map data is not properly initialized.\n");
 	y = 0;
 	while (data->map.map[y])
 	{
@@ -104,8 +102,6 @@ void	draw_elements(t_data *data)
 	int	y;
 	int	x;
 
-	if (data->map.map == NULL)
-		free_exit(data, "Error - Map data is not properly initialized.\n");
 	y = 0;
 	while (data->map.map[y])
 	{
@@ -146,6 +142,7 @@ void	draw_player(int keysym, t_data *data)
 void	call_hooks(t_data *data)
 {
 	mlx_key_hook(data->win_ptr, handle_key, data);
+	
 	// mlx_mouse_hook() ver se a cruz tem de funcionar
 }
 int	handle_key(int keysym, t_data *data)
