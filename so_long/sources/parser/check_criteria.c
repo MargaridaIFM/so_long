@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 11:16:49 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/31 00:43:45 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/31 13:52:46 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void	check_char(t_data *data, int y, int x, char c)
 		data->map.exit_y = y;
 	}
 }
+
 static void	check_nb_elements(t_data *data, char c)
 {
 	int	y;
@@ -49,6 +50,7 @@ static void	check_nb_elements(t_data *data, char c)
 	if (counter != 1)
 		free_exit(data, "Error - Invalid number of elements\n");
 }
+
 static void	check_num_c(t_data *data, char c)
 {
 	int	y;
@@ -72,6 +74,7 @@ static void	check_num_c(t_data *data, char c)
 		free_exit(data, "Error - Invalid number of elements\n");
 	data->map.nb_collect = counter;
 }
+
 void	valid_chars(t_data *data)
 {
 	int	y;
@@ -95,6 +98,7 @@ void	valid_chars(t_data *data)
 	check_nb_elements(data, 'E');
 	check_num_c(data, 'C');
 }
+
 void	check_walls(t_data *data)
 {
 	int	y;
@@ -108,14 +112,14 @@ void	check_walls(t_data *data)
 	while (x < data->map.cols)
 	{
 		if (data->map.map[0][x] != '1' || data->map.map[row][x] != '1')
-			free_exit(data, "Error - Map isn't surrounded by walls (top/bottom)\n");
+			free_exit(data, "Error - Map isn't surrounded by walls\n");
 		x++;
 	}
 	y = 0;
 	while (y < data->map.rows)
 	{
 		if (data->map.map[y][0] != '1' || data->map.map[y][col] != '1')
-			free_exit(data, "Error - Map isn't surrounded by walls (left/right)\n");
+			free_exit(data, "Error - Map isn't surrounded by walls\n");
 		y++;
 	}
 }

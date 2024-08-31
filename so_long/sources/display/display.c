@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:54:34 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/31 01:00:09 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/31 15:40:22 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ static void	load_sprites(t_data *data)
 		|| data->sprites.collec1.img == NULL)
 		free_exit(data, "Error - Failed to load sprites.\n");
 }
-static void load_player(t_data *data)
+
+static void	load_player(t_data *data)
 {
 	data->player.p_f.img = mlx_xpm_file_to_image(data->mlx_ptr,
 			"assets/doc_f.xpm", &data->player.p_f.width,
@@ -58,10 +59,10 @@ void	init_game(t_data *data)
 	data->mlx_ptr = mlx_init();
 	if (data->mlx_ptr == NULL)
 		free_exit(data, "Error - mlx failed.");
-	mlx_get_screen_size(data->mlx_ptr, &data->screen_h_max,
-		&data->screen_w_max);
-	if (data->map.rows * 64 + 64 > data->screen_h_max || data->map.cols * 64
-		+ 64 > data->screen_w_max)
+	mlx_get_screen_size(data->mlx_ptr, &data->screen_w_max,
+		&data->screen_h_max);
+	if (((data->map.rows * 64) + 32) > data->screen_h_max || ((data->map.cols
+				* 64) + 32) > data->screen_w_max)
 		free_exit(data, "Error - Window size larger than screen size.\n");
 	data->win_ptr = mlx_new_window(data->mlx_ptr, data->map.cols * 64,
 			data->map.rows * 64, "so_long");
@@ -74,6 +75,7 @@ void	init_game(t_data *data)
 }
 
 /*
+	
 [] DISPLAY
 	[x] Create a window using MiniLibX
 		[x] Create the structure to store all the necessary information
@@ -92,10 +94,10 @@ void	init_game(t_data *data)
 				[x] don't do anything
 			[x] Is the requested new position a Collectible ?
 				[x] YES - Update the collected items counter
-				    '  - Moves++;
+					'  - Moves++;
 					'->[x] check if all collectibles have been collected
 						'->[x] Yes - unblock the exit
-				[x] Update your map 2D array and replace the collectible by a "floor"
+				[x] Update map 2D array and replace the collectible by "floor"
 				[x] update the  player position to new with the correct img.
 			[x] If the requested new position is not a wall, nor a collectible,
 				nor outside the map,
@@ -106,5 +108,5 @@ void	init_game(t_data *data)
 */
 
 /*
-put		moves;
+put			moves;
 */

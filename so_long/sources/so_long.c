@@ -1,33 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fdf.c                                              :+:      :+:    :+:   */
+/*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/23 21:24:31 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/06/23 21:24:31 by mfrancis         ###   ########.fr       */
+/*   Created: 2024/08/31 13:42:07 by mfrancis          #+#    #+#             */
+/*   Updated: 2024/08/31 13:42:07 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-/* *@brief
-Imitate the functions mlx_pixel_put to calculate the offset memory.
-Because the line_length is different from the size of the window, it is faster.
-@param mlx: mlx pointer.
-@param img: image pointer.
-@param x: x coordinate.
-@param y: y coordinate.
-@param color: color.
-@return void.
-*/
+static void	initialization_data(t_data *data)
+{
+	ft_bzero(data, sizeof(t_data));
+	data->moves = 1;
+	data->sprites.floor.width = 64;
+	data->sprites.floor.height = 64;
+	data->sprites.wall.width = 64;
+	data->sprites.wall.height = 64;
+	data->sprites.collec1.width = 64;
+	data->sprites.collec1.height = 64;
+	data->sprites.exit1.width = 64;
+	data->sprites.exit1.height = 64;
+	data->sprites.exit2.width = 64;
+	data->sprites.exit2.height = 64;
+	data->player.p_f.width = 64;
+	data->player.p_f.height = 64;
+	data->player.p_b.width = 64;
+	data->player.p_b.height = 64;
+	data->player.p_r.width = 64;
+	data->player.p_r.height = 64;
+	data->player.p_l.width = 64;
+	data->player.p_l.height = 64;
+}
 
 int	main(int argc, char *argv[])
 {
-	t_data data;
+	t_data	data;
+
 	(void)argv;
-	if(argc != 2)
+	if (argc != 2)
 		free_exit(&data, "Error\n");
 	initialization_data(&data);
 	check_map(&data, argv[1]);
@@ -61,5 +75,6 @@ steps:
 []BONUS
 	[] Make the player lose when they touch an enemy patrol.
 	[]	Add some sprite animation.
-	[x] Display the movement count directly on screen instead of writing it in the shell
+	[x] Display the movement count directly on screen instead
+		 of writing it in the shell
 */

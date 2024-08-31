@@ -6,19 +6,20 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 23:09:54 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/31 01:00:52 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/31 16:10:21 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-
-static void update_img (t_data *data, int y, int x)
+static void	update_img(t_data *data, int y, int x)
 {
 	data->map.map[y][x] = '0';
 	data->map.nb_collect--;
 	if (data->map.nb_collect == 0)
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,data->sprites.exit2.img, data->map.exit_x * 64, data->map.exit_y * 64);
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->sprites.exit2.img, data->map.exit_x * 64, data->map.exit_y
+			* 64);
 }
 
 static int	verify_move(t_data *data, int keysym)
@@ -48,22 +49,12 @@ static int	verify_move(t_data *data, int keysym)
 		free_exit(data, "");
 	return (0);
 }
-static void put_moves_screen(t_data *data)
-{
-    char *moves;
-    
-    moves = ft_itoa(data->moves);
-    mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-		data->sprites.wall.img, 0, 0);
-    mlx_string_put(data->mlx_ptr, data->win_ptr, 15, 15, 16777215, moves);
-    free(moves);
-}
+
 static int	handle_key(int keysym, t_data *data)
 {
 	if (verify_move(data, keysym) != 0)
 		return (0);
-    put_moves_screen(data);
-	ft_printf("Moves %d\n", data->moves++);
+	put_moves_screen(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 		data->sprites.floor.img, data->player.x * 64, data->player.y * 64);
 	if (keysym == XK_Escape)
@@ -77,12 +68,14 @@ static int	handle_key(int keysym, t_data *data)
 	else if (keysym == XK_d || keysym == XK_Right)
 		data->player.x++;
 	data->map.map[data->player.y][data->player.x] = 'P';
+	ft_printf("Moves %d\n", data->moves++);
 	draw_player(keysym, data);
 	return (0);
 }
-static int press_cross(t_data *data)
+
+static int	press_cross(t_data *data)
 {
-    free_sprites(data);
+	free_sprites(data);
 	free_player(data);
 	if (data->map.map)
 		free_array(data);
@@ -96,8 +89,10 @@ static int press_cross(t_data *data)
 	exit(0);
 	return (0);
 }
+
 void	call_hooks(t_data *data)
 {
-    mlx_hook(data->win_ptr, KeyPress, KeyPressMask, handle_key, data);
-	mlx_hook(data->win_ptr, DestroyNotify, StructureNotifyMask, press_cross, data);
+	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, handle_key, data);
+	mlx_hook(data->win_ptr, DestroyNotify, StructureNotifyMask, press_cross,
+		data);
 }

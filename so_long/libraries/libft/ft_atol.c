@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 12:06:23 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/06/09 18:39:19 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/31 14:01:25 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 long	ft_atol(const char *nptr)
 {
-	long	i;
-	long	neg;
+	long		i;
+	long		neg;
 	long int	final_nr;
 
 	neg = 1;

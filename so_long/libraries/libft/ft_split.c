@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 13:55:14 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/07/12 13:38:56 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/31 14:02:11 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ char	**ft_split(char const *s, char c)
 // 	char const*str_split = "a 1 4 4 7";
 // 	char sep_split = ' ';
 // 	char **result_split =  ft_split(str_split, sep_split);
-	
 // 	for(int i = 0; result_split[i]; i++)
 // 		printf("Print: %s\n", result_split[i]);
 // 	for(int j = 0; result_split[j]; j++)

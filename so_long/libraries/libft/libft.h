@@ -6,24 +6,23 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:19:09 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/06/23 18:07:07 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/31 14:02:29 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# include <fcntl.h>
+# include <limits.h>
+# include <stdarg.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-# include <limits.h>
-# include <stdarg.h>
-# include <fcntl.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
-
 
 // libc functions:
 int					ft_isalpha(int c);
@@ -81,23 +80,23 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
 
-//new functions
-long	ft_atol(const char *nptr);
+// new functions
+long				ft_atol(const char *nptr);
 
-//ft_printf
-int	ft_printf(const char *format, ...);
-int	ft_putchar(char c);
-int	ft_putstr(char *s);
-int	ft_putpointer(unsigned long long ptr);
-int	ft_putnbr(int nbr);
-int	ft_putunsigned(unsigned int nrb);
-int	ft_puthexadecimal(unsigned int nrb, const char format);
+// ft_printf
+int					ft_printf(const char *format, ...);
+int					ft_putchar(char c);
+int					ft_putstr(char *s);
+int					ft_putpointer(unsigned long long ptr);
+int					ft_putnbr(int nbr);
+int					ft_putunsigned(unsigned int nrb);
+int					ft_puthexadecimal(unsigned int nrb, const char format);
 
-//GNL - Bonus
-char	*get_next_line(int fd);
-int		ft_strlen_gnl(char *s);
-char	*ft_strjoin_gnl(char *prefix, char *sufix);
-int		organize_buffer(char *buffer);
+// GNL - Bonus
+char				*get_next_line(int fd);
+int					ft_strlen_gnl(char *s);
+char				*ft_strjoin_gnl(char *prefix, char *sufix);
+int					organize_buffer(char *buffer);
 
 // List / New functions from push_swap
 // void				print_data_a_front(t_data *data);

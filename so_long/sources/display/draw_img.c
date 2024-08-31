@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 23:01:15 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/30 23:55:33 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/31 13:59:40 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static void	draw_background(t_data *data)
 		y++;
 	}
 }
+
 static void	draw_elements(t_data *data)
 {
 	int	y;
@@ -55,6 +56,7 @@ static void	draw_elements(t_data *data)
 		y++;
 	}
 }
+
 void	draw_player(int keysym, t_data *data)
 {
 	if (keysym == XK_w || keysym == XK_Up)
@@ -70,9 +72,21 @@ void	draw_player(int keysym, t_data *data)
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 			data->player.p_r.img, data->player.x * 64, data->player.y * 64);
 }
+
 void	draw_images(t_data *data)
 {
 	draw_background(data);
 	draw_elements(data);
 	draw_player(XK_s, data);
+}
+
+void	put_moves_screen(t_data *data)
+{
+	char	*moves;
+
+	moves = ft_itoa(data->moves);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+		data->sprites.wall.img, 0, 0);
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 15, 15, 16777215, moves);
+	free(moves);
 }

@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 18:04:15 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/06/23 18:05:06 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/31 14:01:47 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 // void free_node(t_node *node)
 // {
 //     t_node *temp;
-   
 //     while (node) 
 //     {
 //         temp = node->next;

@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 11:25:03 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/31 00:45:49 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/31 13:52:09 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static char	**copy_map(char **map, int rows, int cols)
 	new_map[y] = NULL;
 	return (new_map);
 }
+
 static void	flood_fill_map(char **temp_map, int y, int x, t_data *data)
 {
 	if (temp_map[y][x] == '1' || temp_map[y][x] == '2')
@@ -56,7 +57,8 @@ static void	flood_fill_map(char **temp_map, int y, int x, t_data *data)
 	flood_fill_map(temp_map, y, x - 1, data);
 	flood_fill_map(temp_map, y, x + 1, data);
 }
-static void	check_flood_fill(char **temp_map,t_data *data)
+
+static void	check_flood_fill(char **temp_map, t_data *data)
 {
 	if (data->map.coll_p != 0 || data->map.exit_p != 1)
 	{
@@ -75,6 +77,7 @@ void	empty_path(t_data *data)
 	flood_fill_map(temp_map, data->player.y, data->player.x, data);
 	check_flood_fill(temp_map, data);
 }
+
 int	ft_strlen_no_newline(char *s)
 {
 	int	idx;
@@ -86,6 +89,7 @@ int	ft_strlen_no_newline(char *s)
 		idx++;
 	return (idx);
 }
+
 // void	print_map(char **map)
 // {
 // 	int	i;
