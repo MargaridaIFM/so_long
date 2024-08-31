@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 23:09:54 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/31 13:59:17 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/31 17:34:33 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ static int	verify_move(t_data *data, int keysym)
 		update_img(data, y, x);
 		return (0);
 	}
+	else if(data->map.map[y][x] == 'B')
+		free_exit(data, "Game Over");
 	else if (data->map.map[y][x] == 'E' && data->map.nb_collect == 0)
 		free_exit(data, "");
 	return (0);

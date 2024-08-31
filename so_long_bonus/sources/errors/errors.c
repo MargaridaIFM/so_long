@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 16:22:46 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/31 13:50:55 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/31 17:50:47 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,14 @@ void	free_sprites(t_data *data)
 		mlx_destroy_image(data->mlx_ptr, data->sprites.wall.img);
 	if (data->sprites.collec1.img)
 		mlx_destroy_image(data->mlx_ptr, data->sprites.collec1.img);
+	if (data->sprites.collec2.img)
+		mlx_destroy_image(data->mlx_ptr, data->sprites.collec2.img);
 	if (data->sprites.exit1.img)
 		mlx_destroy_image(data->mlx_ptr, data->sprites.exit1.img);
 	if (data->sprites.exit2.img)
 		mlx_destroy_image(data->mlx_ptr, data->sprites.exit2.img);
+	if (data->sprites.enemy.img)
+		mlx_destroy_image(data->mlx_ptr, data->sprites.enemy.img);
 }
 
 void	free_player(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 11:16:49 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/31 13:52:46 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/31 17:28:13 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	valid_chars(t_data *data)
 		{
 			if (data->map.map[y][x] != '0' && data->map.map[y][x] != '1'
 				&& data->map.map[y][x] != 'P' && data->map.map[y][x] != 'E'
-				&& data->map.map[y][x] != 'C')
+				&& data->map.map[y][x] != 'C' && data->map.map[y][x] != 'B')
 				free_exit(data, "Error - Invalid elements\n");
 			x++;
 		}

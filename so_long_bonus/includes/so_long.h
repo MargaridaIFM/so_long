@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 16:17:58 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/31 13:56:48 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/31 19:07:53 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <sys/time.h>
 
 //#define malloc(x) NULL
 
@@ -61,8 +62,10 @@ typedef struct s_sprites
 	t_img		floor;
 	t_img		wall;
 	t_img		collec1;
+	t_img		collec2;
 	t_img		exit1;
 	t_img		exit2;
+	t_img		enemy;
 }				t_sprites;
 
 typedef struct s_data
@@ -77,7 +80,7 @@ typedef struct s_data
 	int			moves;
 }				t_data;
 
-
+int	animation(t_data *data);
 // Parsing:
 void			check_map(t_data *data, char *file_name);
 
