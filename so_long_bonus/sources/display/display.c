@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:54:34 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/31 18:50:26 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/09/01 13:44:24 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ static void	load_sprites(t_data *data)
 			&data->sprites.collec2.height);
 	if (data->sprites.floor.img == NULL || data->sprites.wall.img == NULL
 		|| data->sprites.exit1.img == NULL || data->sprites.exit2.img == NULL
-		|| data->sprites.collec1.img == NULL || data->sprites.collec2.img == NULL)
+		|| data->sprites.collec1.img == NULL
+		|| data->sprites.collec2.img == NULL)
 		free_exit(data, "Error - Failed to load sprites.\n");
 }
 
@@ -82,12 +83,6 @@ void	init_game(t_data *data)
 }
 
 /*
-	printf("cols: %d\n", data->map.cols);
-	printf("rows: %d\n", data->map.rows);
-	printf("cols: %d\n", (data->map.cols * 64));
-	printf("rows: %d\n", (data->map.rows * 64));
-	printf("Screen_h: %d\n", data->screen_h_max);
-	printf("Screen_w: %d\n", data->screen_w_max);
 [] DISPLAY
 	[x] Create a window using MiniLibX
 		[x] Create the structure to store all the necessary information
@@ -117,8 +112,4 @@ void	init_game(t_data *data)
 				[x] update the  player position to new with the correct img.
 		[] close_handler,
 			this is a hook on the red cross that closes the program correctly
-*/
-
-/*
-put			moves;
 */

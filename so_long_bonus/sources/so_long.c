@@ -15,17 +15,6 @@
 
 #include "../includes/so_long.h"
 
-
-/* *@brief
-Imitate the functions mlx_pixel_put to calculate the offset memory.
-Because the line_length is different from the size of the window, it is faster.
-@param mlx: mlx pointer.
-@param img: image pointer.
-@param x: x coordinate.
-@param y: y coordinate.
-@param color: color.
-@return void.
-*/
 static void	initialization_data(t_data *data)
 {
 	ft_bzero(data, sizeof(t_data));
@@ -40,6 +29,8 @@ static void	initialization_data(t_data *data)
 	data->sprites.exit1.height = 64;
 	data->sprites.exit2.width = 64;
 	data->sprites.exit2.height = 64;
+	data->sprites.enemy.width = 64;
+	data->sprites.enemy.height = 64;
 	data->player.p_f.width = 64;
 	data->player.p_f.height = 64;
 	data->player.p_b.width = 64;
@@ -50,9 +41,38 @@ static void	initialization_data(t_data *data)
 	data->player.p_l.height = 64;
 }
 
+static int	animation(t_data *data)
+{
+	static int	flag_colletc1 = 0;
+	int			y;
+	int			x;
+
+	y = -1;
+	while (data->map.map[++y])
+	{
+		x = 0;
+		while (data->map.map[y][x])
+		{
+			if (data->map.map[y][x] == 'C')
+			{
+				if (flag_colletc1 == 0)
+					mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+						data->sprites.collec1.img, x * 64, y * 64);
+				else
+					mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+						data->sprites.collec2.img, x * 64, y * 64);
+			}
+			x++;
+		}
+	}
+	flag_colletc1 = !flag_colletc1;
+	usleep(500000);
+	return (0);
+}
+
 int	main(int argc, char *argv[])
 {
-	t_data data;
+	t_data	data;
 
 	(void)argv;
 	if (argc != 2)
@@ -64,36 +84,7 @@ int	main(int argc, char *argv[])
 	mlx_loop_hook(data.mlx_ptr, animation, &data);
 	mlx_loop(data.mlx_ptr);
 }
-int	animation(t_data *data)
-{
-	static int i = 0;
-	int y;
-	int x;
 
-	
-	while (1)
-	{
-		i = timer();
-		y = 0;
-		while (data->map.map[y])
-		{
-			x = 0;
-			while (data->map.map[y][x])
-			{
-				if (data->map.map[y][x] == 'C' && (timer() - i < 50))
-					mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-						data->sprites.collec1.img, x * 64, y * 64);
-				else if (data->map.map[y][x] == 'C')
-					mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-						data->sprites.collec2.img, x * 64, y * 64);
-				x++;
-			}
-			y++;
-		}
-		i = timer();
-	}
-	return(0);
-}
 /*
 steps:
 [x] Understand de MinilibX
@@ -118,7 +109,7 @@ steps:
 
 []BONUS
 	[x] Make the player lose when they touch an enemy patrol.
-	[]	Add some sprite animation.
+	[x]	Add some sprite animation.
 	[x] Display the movement count directly on screen instead
 			of writing it in the shell
 */

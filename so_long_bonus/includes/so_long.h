@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 16:17:58 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/31 19:07:53 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/09/01 13:04:52 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <sys/time.h>
+# include <time.h>
 
 //#define malloc(x) NULL
 
@@ -80,48 +81,20 @@ typedef struct s_data
 	int			moves;
 }				t_data;
 
-int	animation(t_data *data);
-// Parsing:
 void			check_map(t_data *data, char *file_name);
-
-// check criteria
 void			valid_chars(t_data *data);
-// static void			check_nb_elements(t_data *data, char c);
-// static void			check_char(t_data *data, int y, int x, char c);
-// static void			check_num_c(t_data *data, char c);
 void			check_walls(t_data *data);
-
-// auxiliar functions
 void			empty_path(t_data *data);
-//char			**copy_map(char **map, int rows, int cols);
 int				ft_strlen_no_newline(char *s);
-// static void			flood_fill_map(char **temp_map, int y, int x, t_data *data);
-// static void			check_flood_fill(char **temp_map, t_data *data);
-
-// errors:
 void			free_exit(t_data *data, char *str);
 void			free_array(t_data *data);
 void			free_array_char(char **array);
 void			free_sprites(t_data *data);
 void			free_player(t_data *data);
-
-// Display:
 void			init_game(t_data *data);
-// static void			load_sprites(t_data *data);
-// static void			load_player(t_data *data);
-
-//void			print_map(char **map); // tirar no fim o print map / funcao de debbug
-
- void			draw_images(t_data *data);
-// static void			draw_background(t_data *data);
-// static void			draw_elements(t_data *data);
+void			draw_images(t_data *data);
 void			draw_player(int keysym, t_data *data);
-void	put_moves_screen(t_data *data);
-
-// Functions for Hooks and Masks
+void			put_moves_screen(t_data *data);
 void			call_hooks(t_data *data);
-// static int				handle_key(int keysym, t_data *data);
-// static int				verify_move(t_data *data, int keysym);
-// static int				press_cross(t_data *data);
-// static void 				update_img (t_data *data, int y, int x)
+
 #endif

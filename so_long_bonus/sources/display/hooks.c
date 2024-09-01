@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 23:09:54 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/31 17:34:33 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/09/01 13:15:38 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,8 @@ static int	verify_move(t_data *data, int keysym)
 			&& data->map.nb_collect != 0))
 		return (1);
 	else if (data->map.map[y][x] == 'C')
-	{
-		update_img(data, y, x);
-		return (0);
-	}
-	else if(data->map.map[y][x] == 'B')
+		return (update_img(data, y, x), 0);
+	else if (data->map.map[y][x] == 'B')
 		free_exit(data, "Game Over");
 	else if (data->map.map[y][x] == 'E' && data->map.nb_collect == 0)
 		free_exit(data, "");
@@ -57,7 +54,6 @@ static int	handle_key(int keysym, t_data *data)
 	if (verify_move(data, keysym) != 0)
 		return (0);
 	put_moves_screen(data);
-	ft_printf("Moves %d\n", data->moves++);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 		data->sprites.floor.img, data->player.x * 64, data->player.y * 64);
 	if (keysym == XK_Escape)
@@ -71,24 +67,14 @@ static int	handle_key(int keysym, t_data *data)
 	else if (keysym == XK_d || keysym == XK_Right)
 		data->player.x++;
 	data->map.map[data->player.y][data->player.x] = 'P';
+	ft_printf("Moves %d\n", data->moves++);
 	draw_player(keysym, data);
 	return (0);
 }
 
 static int	press_cross(t_data *data)
 {
-	free_sprites(data);
-	free_player(data);
-	if (data->map.map)
-		free_array(data);
-	if (data->win_ptr)
-		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	if (data->mlx_ptr)
-	{
-		mlx_destroy_display(data->mlx_ptr);
-		free(data->mlx_ptr);
-	}
-	exit(0);
+	free_exit(data, "");
 	return (0);
 }
 
