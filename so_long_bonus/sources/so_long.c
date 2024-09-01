@@ -75,9 +75,9 @@ int	main(int argc, char *argv[])
 	t_data	data;
 
 	(void)argv;
+	initialization_data(&data);
 	if (argc != 2)
 		free_exit(&data, "Error\n");
-	initialization_data(&data);
 	check_map(&data, argv[1]);
 	init_game(&data);
 	mlx_string_put(data.mlx_ptr, data.win_ptr, 15, 15, 16777215, "0");

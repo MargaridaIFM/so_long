@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 23:09:54 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/09/01 13:15:38 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/09/01 15:50:24 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static int	verify_move(t_data *data, int keysym)
 		x--;
 	else if (keysym == XK_d || keysym == XK_Right)
 		x++;
+	else if (keysym != XK_Escape)
+		return (1);
 	if (data->map.map[y][x] == '1' || (data->map.map[y][x] == 'E'
 			&& data->map.nb_collect != 0))
 		return (1);

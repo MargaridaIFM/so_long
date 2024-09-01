@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 16:22:46 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/31 17:50:47 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/09/01 16:32:15 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	free_exit(t_data *data, char *str)
 {
 	if (str && str[0] != '\0')
 		ft_putstr_fd(str, 2);
+	if (!data)
+		exit(0);
 	free_sprites(data);
 	free_player(data);
 	if (data->map.map)

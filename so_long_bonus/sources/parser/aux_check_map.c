@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 11:25:03 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/31 13:52:09 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/09/01 16:31:14 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ static void	flood_fill_map(char **temp_map, int y, int x, t_data *data)
 		data->map.exit_p = 1;
 		return ;
 	}
+	else if (temp_map[y][x] == 'B')
+		return ;
 	temp_map[y][x] = '2';
 	flood_fill_map(temp_map, y - 1, x, data);
 	flood_fill_map(temp_map, y + 1, x, data);
@@ -89,23 +91,3 @@ int	ft_strlen_no_newline(char *s)
 		idx++;
 	return (idx);
 }
-
-// void	print_map(char **map)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = 0;
-// 	j = 0;
-// 	while (map[i])
-// 	{
-// 		j = 0;
-// 		while (map[i][j])
-// 		{
-// 			printf("%c", map[i][j]);
-// 			j++;
-// 		}
-// 		printf("\n");
-// 		i++;
-// 	}
-// }
