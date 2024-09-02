@@ -13,7 +13,7 @@ The aim of this project is to create a 2D game using the MiniLibX library. The p
 - [x] Controls:Use W, A, S, and D keys to move the main character up, down, left, and right.
 - [x] Movement Restrictions: Can't move into walls.
 - [x] Movement Display: The number of movements must be displayed in the shell.
- - [x]Window Management: Display the image in a window and ensure it remains smooth (handling window changes, minimizing, etc.).
+- [x] Window Management: Display the image in a window and ensure it remains smooth (handling window changes, minimizing, etc.).
 - [x] Exit Handling: Pressing ESC must close the window and quit the program cleanly.
  - [x] Cross Button Handling: Clicking the window's close button must also close and quit the program cleanly.
 ### MAP COMPONENTS
