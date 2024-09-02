@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 18:54:34 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/09/01 16:13:29 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/09/01 13:44:24 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,17 @@ static void	load_sprites(t_data *data)
 	data->sprites.collec1.img = mlx_xpm_file_to_image(data->mlx_ptr,
 			"assets/pill_1.xpm", &data->sprites.collec1.width,
 			&data->sprites.collec1.height);
+	data->sprites.collec2.img = mlx_xpm_file_to_image(data->mlx_ptr,
+			"assets/pill_2.xpm", &data->sprites.collec2.width,
+			&data->sprites.collec2.height);
 	if (data->sprites.floor.img == NULL || data->sprites.wall.img == NULL
 		|| data->sprites.exit1.img == NULL || data->sprites.exit2.img == NULL
-		|| data->sprites.collec1.img == NULL)
+		|| data->sprites.collec1.img == NULL
+		|| data->sprites.collec2.img == NULL)
 		free_exit(data, "Error - Failed to load sprites.\n");
 }
 
-static void	load_player(t_data *data)
+static void	load_p_e(t_data *data)
 {
 	data->player.p_f.img = mlx_xpm_file_to_image(data->mlx_ptr,
 			"assets/doc_f.xpm", &data->player.p_f.width,
@@ -49,8 +53,12 @@ static void	load_player(t_data *data)
 	data->player.p_l.img = mlx_xpm_file_to_image(data->mlx_ptr,
 			"assets/doc_l.xpm", &data->player.p_l.width,
 			&data->player.p_l.height);
+	data->sprites.enemy.img = mlx_xpm_file_to_image(data->mlx_ptr,
+			"assets/virus.xpm", &data->sprites.enemy.width,
+			&data->sprites.enemy.height);
 	if (data->player.p_f.img == NULL || data->player.p_b.img == NULL
-		|| data->player.p_r.img == NULL || data->player.p_l.img == NULL)
+		|| data->player.p_r.img == NULL || data->player.p_l.img == NULL
+		|| data->sprites.enemy.img == NULL)
 		free_exit(data, "Error - Failed to load sprites.\n");
 }
 
@@ -69,13 +77,12 @@ void	init_game(t_data *data)
 	if (data->win_ptr == NULL)
 		free_exit(data, "Error - Impossible initiate the window.\n");
 	load_sprites(data);
-	load_player(data);
+	load_p_e(data);
 	draw_images(data);
 	call_hooks(data);
 }
 
 /*
-	
 [] DISPLAY
 	[x] Create a window using MiniLibX
 		[x] Create the structure to store all the necessary information
@@ -105,8 +112,4 @@ void	init_game(t_data *data)
 				[x] update the  player position to new with the correct img.
 		[] close_handler,
 			this is a hook on the red cross that closes the program correctly
-*/
-
-/*
-put			moves;
 */

@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 11:16:49 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/31 13:52:46 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/09/01 16:17:20 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	valid_chars(t_data *data)
 		{
 			if (data->map.map[y][x] != '0' && data->map.map[y][x] != '1'
 				&& data->map.map[y][x] != 'P' && data->map.map[y][x] != 'E'
-				&& data->map.map[y][x] != 'C')
+				&& data->map.map[y][x] != 'C' && data->map.map[y][x] != 'B')
 				free_exit(data, "Error - Invalid elements\n");
 			x++;
 		}
@@ -123,59 +123,3 @@ void	check_walls(t_data *data)
 		y++;
 	}
 }
-// void	check_num_p(t_data *data, char c)
-// {
-// 	int	y;
-// 	int	x;
-// 	int	counter;
-
-// 	y = -1;
-// 	counter = 0;
-// 	while (++y < data->map.rows)
-// 	{
-// 		x = 0;
-// 		while (x < data->map.cols)
-// 		{
-// 			if (data->map.map[y][x] == c)
-// 			{
-// 				counter++;
-// 				if (data->map.map[y][x] == 'P')
-// 				{
-// 					data->player.x = x;
-// 					data->player.y = y;
-// 				}
-// 			}
-// 			x++;
-// 		}
-// 	}
-// 	if (counter != 1)
-// 		free_exit(data, "Error - Invalid number of elements\n");
-// }
-// void	check_num_e(t_data *data, char c)
-// {
-// 	int	y;
-// 	int	x;
-// 	int	counter;
-
-// 	y = -1;
-// 	counter = 0;
-// 	while (++y < data->map.rows)
-// 	{
-// 		x = 0;
-// 		while (x < data->map.cols)
-// 		{
-// 			if (data->map.map[y][x] == c)
-// 			{
-// 				counter++;
-// 				if (data->map.map[y][x] == 'E')
-// 				{
-// 					data->map.exit_x = x;
-// 					data->map.exit_y = y;
-// 				}
-// 			}
-// 			x++;
-// 		}
-// 	}
-// 	if (counter != 1)
-// 		free_exit(data, "Error - Invalid number of elements\n");
-// }

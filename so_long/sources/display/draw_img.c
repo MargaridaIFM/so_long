@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 23:01:15 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/31 13:59:40 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/08/31 18:50:03 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ static void	draw_elements(t_data *data)
 			if (data->map.map[y][x] == 'C')
 				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 					data->sprites.collec1.img, x * 64, y * 64);
+			if (data->map.map[y][x] == 'B')
+				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+					data->sprites.enemy.img, x * 64, y * 64);
 			x++;
 		}
 		y++;

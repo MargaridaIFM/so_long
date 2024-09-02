@@ -6,7 +6,7 @@
 /*   By: mfrancis <mfrancis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 16:17:58 by mfrancis          #+#    #+#             */
-/*   Updated: 2024/08/31 14:05:56 by mfrancis         ###   ########.fr       */
+/*   Updated: 2024/09/01 16:29:54 by mfrancis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <sys/time.h>
+# include <time.h>
+
+//#define malloc(x) NULL
 
 typedef struct s_img
 {
@@ -59,8 +63,10 @@ typedef struct s_sprites
 	t_img		floor;
 	t_img		wall;
 	t_img		collec1;
+	t_img		collec2;
 	t_img		exit1;
 	t_img		exit2;
+	t_img		enemy;
 }				t_sprites;
 
 typedef struct s_data
@@ -90,4 +96,5 @@ void			draw_images(t_data *data);
 void			draw_player(int keysym, t_data *data);
 void			put_moves_screen(t_data *data);
 void			call_hooks(t_data *data);
+
 #endif
